@@ -14,16 +14,17 @@ end
 local Plug = vim.fn["plug#"]
 vim.call("plug#begin", data .. "/plugged")
 
--- Plugins matching your pack.* modules (replace placeholders with your choices)
--- colors:      Plug("author/colorscheme")
--- notify:      Plug("rcarriga/nvim-notify")
--- lsp-cmp:     Plug("neovim/nvim-lspconfig"); Plug("hrsh7th/nvim-cmp")
--- whichkey:    Plug("folke/which-key.nvim")
--- autopairs:   Plug("windwp/nvim-autopairs")
--- formatter:   Plug("stevearc/conform.nvim")         -- or your formatter
--- treesitter:  Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
--- fileexplorer:Plug("nvim-tree/nvim-tree.lua")       -- or your explorer
--- mini:        Plug("echasnovski/mini.nvim")         -- mini.* suite
+Plug("folke/tokyonight.nvim")
+Plug("stevearc/oil.nvim")
+Plug("stevearc/conform.nvim")
+Plug("lewis6991/gitsigns.nvim")
+Plug("saghen/blink.cmp")
+Plug("neovim/nvim-lspconfig")
+Plug("nvim-mini/mini.nvim")
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("rcarriga/nvim-notify")
+Plug("folke/which-key.nvim")
+Plug("windwp/nvim-autopairs")
 
 vim.call("plug#end")
 
