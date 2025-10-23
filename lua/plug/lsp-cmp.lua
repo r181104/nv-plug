@@ -1,9 +1,3 @@
-vim.pack.add({
-	{ src = "https://github.com/saghen/blink.cmp", branch = "main" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/nvim-mini/mini.nvim", branch = "main" },
-})
-
 -- Snippets
 require("mini.snippets").setup({})
 

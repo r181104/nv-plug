@@ -1,7 +1,3 @@
-vim.pack.add({
-	{ src = "https://github.com/folke/tokyonight.nvim", priority = 1000 },
-})
-
 require("tokyonight").setup({
 	style = "storm",
 	styles = {

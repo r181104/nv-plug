@@ -1,10 +1,3 @@
-vim.pack.add({
-	{
-		src = "https://github.com/stevearc/conform.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-	},
-})
-
 local conform = require("conform")
 
 conform.setup({
