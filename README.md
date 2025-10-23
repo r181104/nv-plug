@@ -40,19 +40,10 @@ Make sure you have the following installed:
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/nv-plug.git ~/.config/nvim
+    git clone https://github.com/r181104/nv-plug.git ~/.config/nvim
     ```
 
-2.  **Install `vim-plug`:**
-
-    Download `plug.vim` and place it in the `autoload` directory.
-
-    ```bash
-    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    ```
-
-3.  **Install Plugins:**
+2.  **Install Plugins:**
 
     Open Neovim and run the following command to install all the plugins:
 
