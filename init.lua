@@ -29,7 +29,6 @@ Plug("windwp/nvim-autopairs")
 
 vim.call("plug#end")
 
--- Plugin configs AFTER plug#end so modules can be required
 require("plug.git")
 require("plug.colors")
 require("plug.notify")
