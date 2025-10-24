@@ -30,8 +30,11 @@ Plug("lewis6991/gitsigns.nvim")
 Plug("saghen/blink.cmp")
 -- NOTE: For Language Server Protocol
 Plug("neovim/nvim-lspconfig")
--- NOTE: This provides many Plugins
-Plug("nvim-mini/mini.nvim")
+-- NOTE: Mini Plugins
+Plug("nvim-mini/mini.statusline")
+Plug("nvim-mini/mini.hipatterns")
+Plug("nvim-mini/mini.snippets")
+-- NOTE: TreeSitter
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 -- NOTE: For Keyboard Shortcuts Help
 Plug("folke/which-key.nvim")
@@ -54,9 +57,6 @@ require("plug.whichkey")
 require("plug.autopairs")
 require("plug.formatter")
 require("plug.treesitter")
+require("plug.statusline")
+require("plug.hipatterns")
 require("plug.fileexplorer")
-require("plug.mini.main")
-require("plug.mini.pick")
-require("plug.mini.diff")
-require("plug.mini.statusline")
-require("plug.mini.highpatterns")
