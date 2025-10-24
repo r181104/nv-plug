@@ -4,7 +4,7 @@ A sleek and functional Neovim setup powered by Lua, `vim-plug`, and the `mini.nv
 
 ## ✨ Features
 
--   🎨 **Gorgeous Colors**: Styled with the `tokyonight` theme (storm variant).
+-   🎨 **Gorgeous Colors**: Styled with the `rose-pine` theme.
 -   📂 **Efficient File Navigation**: Uses `oil.nvim` for fast and intuitive file browsing.
 -   🤖 **Smart Autocompletion**: LSP-driven completion with `nvim-lspconfig` and `blink.cmp`.
 -   🌳 **Advanced Syntax Highlighting**: Full support for `nvim-treesitter`.
@@ -32,8 +32,8 @@ Make sure you have the following installed:
 
 -   `neovim` (v0.9.0+)
 -   `git`
--   `ripgrep` (for Telescope/mini.pick search)
--   `fd` (for Telescope/mini.pick file finding)
+-   `ripgrep` (for mini.pick search)
+-   `fd` (for mini.pick file finding)
 
 ## 🚀 Installation
 
@@ -69,6 +69,25 @@ The leader key is set to `Space`.
 | `<leader>so`    | Source the current file                   |
 | `<C-h/j/k/l>`   | Navigate between window splits            |
 | `;`             | Enter command mode (`:`)                  |
+
+### Mini.nvim
+
+| Keybinding      | Description                               |
+| --------------- | ----------------------------------------- |
+| `<leader>ff`    | Find files                                |
+| `<leader>fh`    | Live grep                                 |
+| `<leader>fb`    | Find buffers                              |
+| `<leader>fp`    | Find help                                 |
+| `<leader>fr`    | Recent files                              |
+| `<leader>fg`    | Git files                                 |
+| `<leader>bd`    | Delete buffer                             |
+| `<leader>bD`    | Delete buffer (force)                     |
+| `]h`            | Next diff hunk                            |
+| `[h`            | Previous diff hunk                        |
+| `<leader>da`    | Apply hunk to buffer                      |
+| `<leader>dr`    | Revert hunk changes                       |
+| `<leader>do`    | Toggle detailed diff overlay              |
+| `<leader>ds`    | Show diff summary                         |
 
 ### Text Editing
 
