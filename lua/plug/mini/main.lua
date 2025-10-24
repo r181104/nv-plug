@@ -1,7 +1,3 @@
-vim.pack.add({
-	{ src = "https://github.com/nvim-mini/mini.nvim", branch = "main" },
-})
-
 -- ===== Basics =====
 require("mini.basics").setup({
 	options = {

@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(vim.fn.stdpath("config"))
 local Plug = vim.fn["plug#"]
 vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
 
-Plug("folke/tokyonight.nvim")
+Plug("rose-pine/neovim")
 Plug("stevearc/oil.nvim")
 Plug("stevearc/conform.nvim")
 Plug("lewis6991/gitsigns.nvim")
