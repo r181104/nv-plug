@@ -1,4 +1,4 @@
-{
+{{
     "runtime.version": "LuaJIT",
     "runtime.path": [
     "lua/?.lua",
@@ -9,4 +9,4 @@
     "workspace.library": [
     "$VIMRUNTIME"
     ]
-}
+}}
