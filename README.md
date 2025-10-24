@@ -4,8 +4,8 @@ A sleek and functional Neovim setup powered by Lua, `vim-plug`, and the `mini.nv
 
 ## ✨ Features
 
--   🎨 **Gorgeous Colors**: Styled with the `rose-pine` theme.
--   📂 **Efficient File Navigation**: Uses `oil.nvim` for fast and intuitive file browsing.
+-   🎨 **Stunning Colors**: Featuring the beautiful `tokyonight` colorscheme.
+-   📂 **Efficient File Navigation**: `oil.nvim` for fast and intuitive file browsing.
 -   🤖 **Smart Autocompletion**: LSP-driven completion with `nvim-lspconfig` and `blink.cmp`.
 -   🌳 **Advanced Syntax Highlighting**: Full support for `nvim-treesitter`.
 -    GIT Integration: `gitsigns.nvim` to show changes in the sign column.
@@ -14,6 +14,7 @@ A sleek and functional Neovim setup powered by Lua, `vim-plug`, and the `mini.nv
 -   ✍️ **Auto-Formatting**: `conform.nvim` for automatic code formatting.
 -   ペア **Auto Pairs**: `nvim-autopairs` for automatic bracket and quote closing.
 -   🔔 **Clean Notifications**: `nvim-notify` for stylish notifications.
+-   命令行 **Modern Command Line**: `noice.nvim` for a redesigned command-line experience.
 
 ##  Prerequisites
 
@@ -51,7 +52,7 @@ Make sure you have the following installed:
     :PlugInstall
     ```
 
-    You may also need to run `:TSUpdate` to install Treesitter parsers.
+    You may also need to run `:TSUpdate` to install Treesitter parsers. The `tokyonight` colorscheme will be enabled by default.
 
 ## 🔑 Keybindings
 
@@ -67,6 +68,12 @@ The leader key is set to `Space`.
 | `<leader>w`     | Write (save) the current file             |
 | `<leader>q`     | Quit Neovim                               |
 | `<leader>so`    | Source the current file                   |
+| `<leader>si`    | Source `init.lua`                         |
+| `<leader>rr`    | Restart Neovim                            |
+| `<leader>bc`    | New empty buffer                          |
+| `<leader>bn`    | Next buffer                               |
+| `<leader>bp`    | Previous buffer                           |
+| `<leader>y`     | Yank to system clipboard                  |
 | `<C-h/j/k/l>`   | Navigate between window splits            |
 | `;`             | Enter command mode (`:`)                  |
 
