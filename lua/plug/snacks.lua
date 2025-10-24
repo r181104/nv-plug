@@ -20,6 +20,7 @@ Snacks.setup({
 	},
 	picker = {
 		enabled = true,
+		layout = "left",
 	},
 	bufdelete = {
 		enabled = true,
@@ -77,10 +78,10 @@ Snacks.setup({
 		sort = { "level", "added" },
 		level = vim.log.levels.TRACE,
 		icons = {
-			error = "",
-			warn = "",
+			error = "",
+			warn = "",
 			info = "󰋼",
-			debug = "",
+			debug = "",
 			trace = "󰴽",
 		},
 		style = "compact",
@@ -222,11 +223,11 @@ Snacks.setup({
 			git_signs = true,
 			mini_diff_signs = true,
 			diagnostics = true,
-			inlay_hints = false,
+			inlay_hints = true,
 		},
 		show = {
-			statusline = false,
-			tabline = false,
+			statusline = true,
+			tabline = true,
 		},
 		win = {
 			width = 120,

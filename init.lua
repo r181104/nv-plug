@@ -20,8 +20,8 @@ Plug("folke/tokyonight.nvim")
 -- NOTE: Snacks
 Plug("folke/snacks.nvim")
 Plug("nvim-mini/mini.icons")
--- NOTE: File Exploring
-Plug("stevearc/oil.nvim")
+-- NOTE: Notifier
+Plug("rcarriga/nvim-notify")
 -- NOTE: For Formatting
 Plug("stevearc/conform.nvim")
 -- NOTE: For gitsigns
@@ -42,8 +42,6 @@ Plug("windwp/nvim-autopairs")
 -- NOTE: Command Line
 Plug("folke/noice.nvim")
 Plug("MunifTanjim/nui.nvim")
--- NOTE: Notifier
-Plug("rcarriga/nvim-notify")
 
 vim.call("plug#end")
 
@@ -51,7 +49,6 @@ require("plug.git")
 require("plug.cmd")
 require("plug.snacks")
 require("plug.colors")
-require("plug.notify")
 require("plug.lsp-cmp")
 require("plug.whichkey")
 require("plug.autopairs")
@@ -59,4 +56,3 @@ require("plug.formatter")
 require("plug.treesitter")
 require("plug.statusline")
 require("plug.hipatterns")
-require("plug.fileexplorer")
