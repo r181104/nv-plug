@@ -17,6 +17,9 @@ vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
 
 -- NOTE: ColorScheme
 Plug("folke/tokyonight.nvim")
+-- NOTE: Snacks
+Plug("folke/snacks.nvim")
+Plug("nvim-mini/mini.icons")
 -- NOTE: File Exploring
 Plug("stevearc/oil.nvim")
 -- NOTE: For Formatting
@@ -43,6 +46,7 @@ vim.call("plug#end")
 
 require("plug.git")
 require("plug.cmd")
+require("plug.snacks")
 require("plug.colors")
 require("plug.notify")
 require("plug.lsp-cmp")
