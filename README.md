@@ -1,4 +1,4 @@
-# 🔌 nv-plug: A Modern Neovim Configuration
+# 🔌 A Modern Neovim Configuration
 
 A sleek and functional Neovim setup powered by Lua, `vim-plug`, and the `mini.nvim` library.
 
