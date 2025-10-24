@@ -1,20 +1,21 @@
 # 🔌 A Modern Neovim Configuration
 
-A sleek and functional Neovim setup powered by Lua, `vim-plug`, and the `mini.nvim` library.
+A sleek and functional Neovim setup powered by Lua, `vim-plug`, and a collection of modern plugins.
 
 ## ✨ Features
 
 -   🎨 **Stunning Colors**: Featuring the beautiful `tokyonight` colorscheme.
 -   📂 **Efficient File Navigation**: `oil.nvim` for fast and intuitive file browsing.
--   🤖 **Smart Autocompletion**: LSP-driven completion with `nvim-lspconfig` and `blink.cmp`.
+-   🤖 **Smart Autocompletion**: LSP-driven completion with `blink.cmp`, a fast and lightweight completion plugin.
 -   🌳 **Advanced Syntax Highlighting**: Full support for `nvim-treesitter`.
--    GIT Integration: `gitsigns.nvim` to show changes in the sign column.
+-   GIT Integration: `gitsigns.nvim` to show changes in the sign column.
 -   💡 **Key Hinting**: `which-key.nvim` displays available keybindings.
--   🤏 **Minimalist Core**: Leverages the powerful and lightweight `mini.nvim` suite for statusline, diffing, and more.
+-   🤏 **Minimalist Statusline**: `mini.statusline` for a clean and informative statusline.
 -   ✍️ **Auto-Formatting**: `conform.nvim` for automatic code formatting.
 -   ペア **Auto Pairs**: `nvim-autopairs` for automatic bracket and quote closing.
 -   🔔 **Clean Notifications**: `nvim-notify` for stylish notifications.
 -   命令行 **Modern Command Line**: `noice.nvim` for a redesigned command-line experience.
+-   🚀 **Utilities**: `snacks.nvim` for a variety of UI and workflow enhancements.
 
 ##  Prerequisites
 
@@ -33,8 +34,9 @@ Make sure you have the following installed:
 
 -   `neovim` (v0.9.0+)
 -   `git`
--   `ripgrep` (for mini.pick search)
--   `fd` (for mini.pick file finding)
+-   `ripgrep`
+-   `fd`
+-   `live-server` (optional, for web development)
 
 ## 🚀 Installation
 
@@ -77,24 +79,68 @@ The leader key is set to `Space`.
 | `<C-h/j/k/l>`   | Navigate between window splits            |
 | `;`             | Enter command mode (`:`)                  |
 
-### Mini.nvim
+### Snacks.nvim
 
 | Keybinding      | Description                               |
 | --------------- | ----------------------------------------- |
-| `<leader>ff`    | Find files                                |
-| `<leader>fh`    | Live grep                                 |
-| `<leader>fb`    | Find buffers                              |
-| `<leader>fp`    | Find help                                 |
-| `<leader>fr`    | Recent files                              |
-| `<leader>fg`    | Git files                                 |
-| `<leader>bd`    | Delete buffer                             |
-| `<leader>bD`    | Delete buffer (force)                     |
-| `]h`            | Next diff hunk                            |
-| `[h`            | Previous diff hunk                        |
-| `<leader>da`    | Apply hunk to buffer                      |
-| `<leader>dr`    | Revert hunk changes                       |
-| `<leader>do`    | Toggle detailed diff overlay              |
-| `<leader>ds`    | Show diff summary                         |
+| `<leader><space>`| Smart Find Files                          |
+| `<leader>,`     | Buffers                                   |
+| `<leader>/`     | Grep                                      |
+| `<leader>:`     | Command History                           |
+| `<leader>e`     | File Explorer                             |
+| `<leader>fb`    | Buffers                                   |
+| `<leader>fc`    | Find Config File                          |
+| `<leader>ff`    | Find Files                                |
+| `<leader>fg`    | Find Git Files                            |
+| `<leader>fr`    | Recent Files                              |
+| `<leader>gb`    | Git Branches                              |
+| `<leader>gl`    | Git Log                                   |
+| `<leader>gL`    | Git Log Line                              |
+| `<leader>gs`    | Git Status                                |
+| `<leader>gS`    | Git Stash                                 |
+| `<leader>gd`    | Git Diff                                  |
+| `<leader>gf`    | Git Log File                              |
+| `<leader>gB`    | Git Browse                                |
+| `<leader>gg`    | Lazygit                                   |
+| `<leader>sb`    | Buffer Lines                              |
+| `<leader>sB`    | Grep Open Buffers                         |
+| `<leader>sg`    | Grep                                      |
+| `<leader>sw`    | Search Word                               |
+| `<leader>s"`    | Registers                                 |
+| `<leader>sa`    | Autocmds                                  |
+| `<leader>sc`    | Command History                           |
+| `<leader>sC`    | Commands                                  |
+| `<leader>sd`    | Diagnostics                               |
+| `<leader>sD`    | Buffer Diagnostics                        |
+| `<leader>sh`    | Help Pages                                |
+| `<leader>sH`    | Highlights                                |
+| `<leader>si`    | Icons                                     |
+| `<leader>sj`    | Jumps                                     |
+| `<leader>sk`    | Keymaps                                   |
+| `<leader>sl`    | Location List                             |
+| `<leader>sm`    | Marks                                     |
+| `<leader>sM`    | Man Pages                                 |
+| `<leader>sq`    | Quickfix List                             |
+| `<leader>sR`    | Resume Picker                             |
+| `<leader>su`    | Undo History                              |
+| `<leader>uC`    | Colorschemes                              |
+| `gd`            | Goto Definition                           |
+| `gD`            | Goto Declaration                          |
+| `gr`            | LSP References                            |
+| `gI`            | Goto Implementation                       |
+| `gy`            | Goto Type Definition                      |
+| `<leader>ss`    | LSP Symbols                               |
+| `<leader>sS`    | LSP Workspace Symbols                     |
+| `<leader>z`     | Toggle Zen Mode                           |
+| `<leader>Z`     | Toggle Zoom                               |
+| `<leader>.`     | Toggle Scratch Buffer                     |
+| `<leader>S`     | Select Scratch Buffer                     |
+| `<leader>n`     | Notification History                      |
+| `<leader>un`    | Dismiss Notifications                     |
+| `<leader>bd`    | Delete Buffer                             |
+| `<leader>cR`    | Rename File                               |
+| `<leader>up`    | Toggle Profiler                           |
+| `<C-/>`          | Toggle Terminal                           |
 
 ### Text Editing
 
