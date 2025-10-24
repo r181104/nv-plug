@@ -15,21 +15,34 @@ vim.opt.rtp:prepend(vim.fn.stdpath("config"))
 local Plug = vim.fn["plug#"]
 vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
 
-Plug("EdenEast/nightfox.nvim")
+-- NOTE: ColorScheme
+Plug("folke/tokyonight.nvim")
+-- NOTE: File Exploring
 Plug("stevearc/oil.nvim")
+-- NOTE: For Formatting
 Plug("stevearc/conform.nvim")
+-- NOTE: For gitsigns
 Plug("lewis6991/gitsigns.nvim")
+-- NOTE: For completion
 Plug("saghen/blink.cmp")
+-- NOTE: For Language Server Protocol
 Plug("neovim/nvim-lspconfig")
+-- NOTE: This provides many Plugins
 Plug("nvim-mini/mini.nvim")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
-Plug("rcarriga/nvim-notify")
+-- NOTE: For Keyboard Shortcuts Help
 Plug("folke/which-key.nvim")
 Plug("windwp/nvim-autopairs")
+-- NOTE: Command Line
+Plug("folke/noice.nvim")
+Plug("MunifTanjim/nui.nvim")
+-- NOTE: Notifier
+Plug("rcarriga/nvim-notify")
 
 vim.call("plug#end")
 
 require("plug.git")
+require("plug.cmd")
 require("plug.colors")
 require("plug.notify")
 require("plug.lsp-cmp")
