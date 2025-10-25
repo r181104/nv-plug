@@ -590,8 +590,6 @@ vim.schedule(function()
 	snacks.toggle.dim():map("<leader>uD")
 	snacks.toggle.zen():map("<leader>uz")
 	snacks.toggle.zoom():map("<leader>uZ")
-
-	-- REMOVED animation toggles (scroll, animate) since they're disabled
 end)
 
 -- ========== DEBUG UTILITIES ==========
@@ -607,7 +605,6 @@ end
 vim.print = _G.dd
 
 -- ========== PERFORMANCE AUTOCMDS ==========
-
 -- LSP attach notification
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
@@ -619,7 +616,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- ========== STARTUP NOTIFICATION ==========
-
 vim.schedule(function()
-	snacks.notify("Snacks loaded (no animations)", { title = "Ready", level = "info", timeout = 1000 })
+	snacks.notify("------------Snacks loaded------------", { title = "Ready", level = "info", timeout = 1000 })
 end)
