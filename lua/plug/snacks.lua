@@ -2,9 +2,9 @@ local Snacks = require("snacks")
 
 Snacks.setup({
 	animate = {
-		enabled = true,
+		enabled = false,
 		duration = 2,
-		fps = 60,
+		fps = 144,
 		easing = "linear",
 	},
 	bigfile = {
@@ -29,7 +29,7 @@ Snacks.setup({
 		enabled = false,
 	},
 	dim = {
-		enabled = true,
+		enabled = false,
 	},
 	git = {
 		enabled = true,
