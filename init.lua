@@ -17,31 +17,36 @@ vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
 
 -- NOTE: ColorScheme
 Plug("folke/tokyonight.nvim")
--- NOTE: Snacks
-Plug("folke/snacks.nvim")
-Plug("nvim-mini/mini.icons")
+-- NOTE: Command Line
+Plug("folke/noice.nvim")
+Plug("MunifTanjim/nui.nvim")
 -- NOTE: Notifier
 Plug("rcarriga/nvim-notify")
--- NOTE: For Formatting
-Plug("stevearc/conform.nvim")
+-- NOTE: For File Explorer
+Plug("stevearc/oil.nvim")
 -- NOTE: For gitsigns
 Plug("lewis6991/gitsigns.nvim")
--- NOTE: For completion
-Plug("saghen/blink.cmp")
 -- NOTE: For Language Server Protocol
 Plug("neovim/nvim-lspconfig")
+-- NOTE: For Formatting
+Plug("stevearc/conform.nvim")
+-- NOTE: For completion
+Plug("saghen/blink.cmp")
 -- NOTE: Mini Plugins
 Plug("nvim-mini/mini.statusline")
 Plug("nvim-mini/mini.hipatterns")
 Plug("nvim-mini/mini.snippets")
--- NOTE: TreeSitter
-Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+-- NOTE: Snacks from Folke
+Plug("folke/snacks.nvim")
+Plug("nvim-lua/plenary.nvim")
 -- NOTE: For Keyboard Shortcuts Help
 Plug("folke/which-key.nvim")
 Plug("windwp/nvim-autopairs")
--- NOTE: Command Line
-Plug("folke/noice.nvim")
-Plug("MunifTanjim/nui.nvim")
+-- NOTE: TreeSitter
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+-- NOTE: Icons
+Plug("nvim-tree/nvim-web-devicons")
+Plug("nvim-mini/mini.icons")
 
 vim.call("plug#end")
 

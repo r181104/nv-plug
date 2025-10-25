@@ -1,73 +1,94 @@
-local Snacks = require("snacks")
+local ok, snacks = pcall(require, "snacks")
+if not ok then
+	vim.notify("snacks.nvim not found", vim.log.levels.ERROR)
+	return
+end
 
-Snacks.setup({
-	animate = {
-		enabled = false,
-		duration = 2,
-		fps = 144,
-		easing = "linear",
-	},
+-- ========== SPEED-OPTIMIZED CONFIGURATION (NO ANIMATIONS) ==========
+snacks.setup({
+	-- ========== CORE MODULES ==========
+
 	bigfile = {
 		enabled = true,
+		size = 1.5 * 1024 * 1024,
 		notify = true,
-		size = 2 * 1024 * 1024,
 		setup = function(ctx)
-			vim.cmd([[NoMatchParen]])
-			vim.schedule(function()
-				vim.bo[ctx.buf].syntax = ctx.ft
-			end)
+			vim.cmd([[syntax clear]])
+			vim.opt_local.foldmethod = "manual"
+			vim.opt_local.spell = false
+			vim.opt_local.undolevels = -1
+			vim.opt_local.swapfile = false
+			vim.opt_local.breakindent = false
 		end,
 	},
-	picker = {
-		enabled = true,
-		layout = "left",
-	},
-	bufdelete = {
-		enabled = true,
-	},
+
 	dashboard = {
-		enabled = false,
-	},
-	dim = {
-		enabled = false,
-	},
-	git = {
 		enabled = true,
-	},
-	indent = {
-		enabled = true,
-		animate = {
-			enabled = true,
-			duration = {
-				step = 20,
-				total = 500,
+		preset = {
+			header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+			keys = {
+				{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart()" },
+				{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+				{ icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.picker.grep()" },
+				{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.picker.recent()" },
+				{
+					icon = " ",
+					key = "c",
+					desc = "Config",
+					action = ":lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })",
+				},
+				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 			},
 		},
+		sections = {
+			{ section = "header" },
+			{ section = "keys", gap = 1, padding = 1 },
+		},
+	},
+
+	explorer = {
+		enabled = true,
+	},
+
+	-- Indent - ANIMATIONS DISABLED
+	indent = {
+		enabled = true,
 		indent = {
+			enabled = true,
 			char = "│",
-			blank = " ",
-			priority = 1,
+			only_scope = false,
+			only_current = false,
 		},
 		scope = {
 			enabled = true,
 			char = "│",
-			underline = false,
-			priority = 200,
+			underline = true,
+			animate = {
+				enabled = false, -- DISABLED
+			},
 		},
 	},
+
 	input = {
 		enabled = true,
 		icon = "❯ ",
-		icon_hl = "SnacksInputIcon",
-		icon_pos = "left",
+		win = {
+			relative = "editor",
+			row = "50%",
+			col = "50%",
+			width = 60,
+			height = 1,
+			border = "rounded",
+			title_pos = "center",
+		},
 	},
-	layout = {
-		enabled = true,
-	},
-	lazygit = {
-		enabled = true,
-		configure = true,
-	},
+
 	notifier = {
 		enabled = true,
 		timeout = 3000,
@@ -79,30 +100,40 @@ Snacks.setup({
 		level = vim.log.levels.TRACE,
 		icons = {
 			error = "",
-			warn = "",
-			info = "󰋼",
+			warn = "⚠️",
+			info = "ℹ️",
 			debug = "",
 			trace = "󰴽",
 		},
 		style = "compact",
 	},
-	notify = {
+
+	picker = {
 		enabled = true,
+		layout = "left",
+		formatters = {
+			file = {
+				filename_first = true,
+			},
+		},
+		sources = {
+			buffers = {
+				sort_lastused = true,
+			},
+		},
+		previewers = {
+			git = {
+				native = true,
+			},
+		},
 	},
-	profiler = {
-		enabled = true,
-	},
+
 	quickfile = {
 		enabled = true,
 	},
-	rename = {
-		enabled = true,
-	},
+
 	scope = {
 		enabled = true,
-		min_size = 2,
-		max_size = nil,
-		edge = true,
 		cursor = true,
 		treesitter = {
 			enabled = true,
@@ -113,24 +144,134 @@ Snacks.setup({
 				"method_definition",
 				"class_declaration",
 				"class_definition",
-				"do_statement",
-				"while_statement",
-				"repeat_statement",
-				"if_statement",
-				"for_statement",
 			},
 		},
 	},
-	scratch = {
+
+	scroll = {
+		enabled = false,
+	},
+
+	statuscolumn = {
 		enabled = true,
+		left = { "mark", "sign" },
+		right = { "fold", "git" },
+		folds = {
+			open = false,
+			git_hl = false,
+		},
+		git = {
+			patterns = { "GitSign", "MiniDiffSign" },
+		},
+		refresh = 50,
+	},
+
+	words = {
+		enabled = true,
+		debounce = 200,
+		notify_jump = false,
+		notify_end = true,
+		foldopen = true,
+		jumplist = true,
+		modes = { "n" },
+	},
+
+	-- ========== OPTIONAL MODULES ==========
+
+	animate = {
+		enabled = false,
+	},
+
+	dim = {
+		enabled = false,
+		scope = {
+			min_size = 5,
+			max_size = 50,
+			siblings = true,
+		},
+		animate = {
+			enabled = false,
+		},
+	},
+
+	git = {
+		timeout = 5000,
+	},
+
+	gitbrowse = {
+		url_patterns = {
+			["github.com"] = {
+				branch = "/tree/{branch}",
+				file = "/blob/{branch}/{file}#L{line_start}-L{line_end}",
+				commit = "/commit/{commit}",
+			},
+			["gitlab.com"] = {
+				branch = "/-/tree/{branch}",
+				file = "/-/blob/{branch}/{file}#L{line_start}-{line_end}",
+				commit = "/-/commit/{commit}",
+			},
+			["bitbucket.org"] = {
+				branch = "/src/{branch}",
+				file = "/src/{branch}/{file}#lines-{line_start}:{line_end}",
+				commit = "/commits/{commit}",
+			},
+		},
+	},
+
+	image = {
+		enabled = true,
+		formats = {
+			"png",
+			"jpg",
+			"jpeg",
+			"gif",
+			"bmp",
+			"webp",
+			"tiff",
+			"heic",
+			"avif",
+			"mp4",
+			"mov",
+			"avi",
+			"mkv",
+			"webm",
+			"pdf",
+			"icns",
+		},
+		backend = "auto",
+		integrations = {
+			markdown = {
+				enabled = true,
+				clear_in_insert_mode = true,
+				only_render_image_at_cursor = false,
+			},
+		},
+		max_width = 100,
+		max_height = 100,
+	},
+
+	lazygit = {
+		configure = true,
+		win = {
+			style = "lazygit",
+			position = "float",
+			border = "rounded",
+			width = 0.9,
+			height = 0.9,
+			backdrop = 60,
+		},
+	},
+
+	rename = {
+		enabled = true,
+		autosave = true,
+		notify = true,
+	},
+
+	scratch = {
 		name = "Scratch",
-		ft = function()
-			if vim.bo.buftype == "" and vim.bo.filetype == "" then
-				return "markdown"
-			end
-			return vim.bo.filetype
-		end,
-		icon = nil,
+		ft = "markdown",
+		icon = "󱓥",
 		root = vim.fn.stdpath("data") .. "/scratch",
 		autowrite = true,
 		filekey = {
@@ -138,100 +279,48 @@ Snacks.setup({
 			branch = true,
 			count = true,
 		},
-		win_by_ft = {
-			lua = {
-				keys = {
-					["source"] = {
-						"<cr>",
-						function(self)
-							vim.cmd("source " .. self.file)
-						end,
-						desc = "Source buffer",
-						mode = { "n", "x" },
-					},
-				},
-			},
+		win = {
+			position = "float",
+			border = "rounded",
+			width = 0.8,
+			height = 0.8,
+			backdrop = 60,
 		},
 	},
-	scroll = {
-		enabled = true,
-		animate = {
-			duration = { step = 10, total = 150 },
-			easing = "linear",
-		},
-		spamming = 10,
-		filter = function(buf)
-			return vim.b[buf].scroll ~= false and vim.bo[buf].buftype ~= "terminal"
-		end,
-	},
-	statuscolumn = {
-		enabled = true,
-		left = { "mark", "sign" },
-		right = { "fold", "git" },
-		folds = {
-			open = true,
-			git_hl = false,
-		},
-		git = {
-			patterns = { "GitSign", "MiniDiffSign", "Gitsigns" },
-		},
-		refresh = 50,
-	},
+
 	terminal = {
-		enabled = true,
-		win = { style = "terminal" },
+		win = {
+			position = "float",
+			border = "rounded",
+			width = 0.9,
+			height = 0.9,
+			backdrop = 60,
+		},
 	},
+
 	toggle = {
-		enabled = true,
-		which_key = true,
 		notify = true,
 		icon = {
-			enabled = " ⌨️",
-			disabled = " 󰌐 ",
-		},
-		icon_enabled = " ⌨️",
-	},
-	util = {
-		enabled = true,
-	},
-	win = {
-		enabled = true,
-		backdrop = 0,
-		position = "float",
-		border = "none",
-		height = 0.8,
-		width = 0.8,
-		zindex = 50,
-		wo = {
-			winhighlight = "NormalFloat:Normal",
-			winblend = 0,
+			enabled = "📔",
+			disabled = "📓",
 		},
 	},
-	words = {
-		enabled = true,
-		debounce = 100,
-		notify_jump = false,
-		notify_end = true,
-		foldopen = true,
-		jumplist = true,
-		modes = { "n" },
-	},
+
 	zen = {
-		enabled = true,
 		toggles = {
 			dim = true,
-			git_signs = true,
-			mini_diff_signs = true,
-			diagnostics = true,
-			inlay_hints = true,
+			git_signs = false,
+			mini_diff_signs = false,
+			diagnostics = false,
+			inlay_hints = false,
 		},
 		show = {
-			statusline = true,
-			tabline = true,
+			statusline = false,
+			tabline = false,
 		},
 		win = {
 			width = 120,
-			backdrop = 0,
+			backdrop = 95,
 		},
 		zoom = {
 			toggles = {},
@@ -239,251 +328,298 @@ Snacks.setup({
 				statusline = true,
 				tabline = true,
 			},
-			win = {
-				backdrop = 0,
-			},
 		},
 	},
+
 	styles = {
 		notification = {
-			wo = { wrap = true, winblend = 0 },
-			bo = { filetype = "markdown" },
+			wo = { wrap = true },
+			border = "rounded",
 		},
-		scratch = {
-			width = 100,
-			height = 30,
-			bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
-			minimal = false,
-			noautocmd = false,
-			zindex = 20,
-			wo = { winhighlight = "NormalFloat:Normal", winblend = 0 },
-			border = "none",
-			title_pos = "center",
-			footer_pos = "center",
-		},
-		terminal = {
-			width = 0.8,
-			height = 0.8,
-			border = "none",
-			zindex = 100,
-			bo = {
-				filetype = "snacks_terminal",
-			},
-			wo = {},
-			keys = {
-				q = "hide",
-				gf = function(self)
-					local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
-					if f ~= "" then
-						self:close()
-						vim.cmd("e " .. f)
-					end
-				end,
-				term_normal = {
-					"<esc>",
-					function(self)
-						self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
-						if self.esc_timer:is_active() then
-							self.esc_timer:stop()
-							vim.cmd("stopinsert")
-						else
-							self.esc_timer:start(200, 0, function() end)
-							return "<esc>"
-						end
-					end,
-					mode = "t",
-					expr = true,
-					desc = "Double escape to normal mode",
-				},
-			},
+		notification_history = {
+			border = "rounded",
+			width = 0.6,
+			height = 0.6,
 		},
 	},
 })
 
+-- ========== KEYMAPS (same as before) ==========
+
 local map = vim.keymap.set
+local opts = { silent = true }
 
+-- Core Pickers
 map("n", "<leader><space>", function()
-	Snacks.picker.smart()
-end, { desc = "Smart Find Files" })
+	snacks.picker.smart()
+end, vim.tbl_extend("force", opts, { desc = "Smart Find" }))
 map("n", "<leader>,", function()
-	Snacks.picker.buffers()
-end, { desc = "Buffers" })
+	snacks.picker.buffers()
+end, vim.tbl_extend("force", opts, { desc = "Buffers" }))
 map("n", "<leader>/", function()
-	Snacks.picker.grep()
-end, { desc = "Grep" })
+	snacks.picker.grep()
+end, vim.tbl_extend("force", opts, { desc = "Grep" }))
 map("n", "<leader>:", function()
-	Snacks.picker.command_history()
-end, { desc = "Command History" })
-map("n", "<leader>e", function()
-	Snacks.explorer({ cwd = vim.fn.getcwd() })
-end, { desc = "File Explorer" })
+	snacks.picker.command_history()
+end, vim.tbl_extend("force", opts, { desc = "Command History" }))
 
+-- Find
 map("n", "<leader>fb", function()
-	Snacks.picker.buffers()
-end, { desc = "Buffers" })
+	snacks.picker.buffers()
+end, vim.tbl_extend("force", opts, { desc = "Buffers" }))
 map("n", "<leader>fc", function()
-	Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "Find Config File" })
+	snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+end, vim.tbl_extend("force", opts, { desc = "Config" }))
 map("n", "<leader>ff", function()
-	Snacks.picker.files()
-end, { desc = "Find Files" })
+	snacks.picker.files()
+end, vim.tbl_extend("force", opts, { desc = "Files" }))
 map("n", "<leader>fg", function()
-	Snacks.picker.git_files()
-end, { desc = "Find Git Files" })
+	snacks.picker.git_files()
+end, vim.tbl_extend("force", opts, { desc = "Git Files" }))
+map("n", "<leader>fp", function()
+	snacks.picker.projects()
+end, vim.tbl_extend("force", opts, { desc = "Projects" }))
 map("n", "<leader>fr", function()
-	Snacks.picker.recent()
-end, { desc = "Recent Files" })
+	snacks.picker.recent()
+end, vim.tbl_extend("force", opts, { desc = "Recent" }))
 
+-- Git
 map("n", "<leader>gb", function()
-	Snacks.picker.git_branches()
-end, { desc = "Git Branches" })
+	snacks.picker.git_branches()
+end, vim.tbl_extend("force", opts, { desc = "Branches" }))
 map("n", "<leader>gl", function()
-	Snacks.picker.git_log()
-end, { desc = "Git Log" })
+	snacks.picker.git_log()
+end, vim.tbl_extend("force", opts, { desc = "Log" }))
 map("n", "<leader>gL", function()
-	Snacks.picker.git_log_line()
-end, { desc = "Git Log Line" })
-map("n", "<leader>gs", function()
-	Snacks.picker.git_status()
-end, { desc = "Git Status" })
-map("n", "<leader>gS", function()
-	Snacks.picker.git_stash()
-end, { desc = "Git Stash" })
-map("n", "<leader>gd", function()
-	Snacks.picker.git_diff()
-end, { desc = "Git Diff" })
+	snacks.picker.git_log_line()
+end, vim.tbl_extend("force", opts, { desc = "Log (Line)" }))
 map("n", "<leader>gf", function()
-	Snacks.picker.git_log_file()
-end, { desc = "Git Log File" })
-map({ "n", "v" }, "<leader>gB", function()
-	Snacks.gitbrowse()
-end, { desc = "Git Browse" })
+	snacks.picker.git_log_file()
+end, vim.tbl_extend("force", opts, { desc = "File History" }))
+map("n", "<leader>gs", function()
+	snacks.picker.git_status()
+end, vim.tbl_extend("force", opts, { desc = "Status" }))
+map("n", "<leader>gS", function()
+	snacks.picker.git_stash()
+end, vim.tbl_extend("force", opts, { desc = "Stash" }))
+map("n", "<leader>gd", function()
+	snacks.picker.git_diff()
+end, vim.tbl_extend("force", opts, { desc = "Diff" }))
+map("n", "<leader>gB", function()
+	snacks.gitbrowse()
+end, vim.tbl_extend("force", opts, { desc = "Browse" }))
+map("v", "<leader>gB", function()
+	snacks.gitbrowse()
+end, vim.tbl_extend("force", opts, { desc = "Browse" }))
 map("n", "<leader>gg", function()
-	Snacks.lazygit()
-end, { desc = "Lazygit" })
+	snacks.lazygit()
+end, vim.tbl_extend("force", opts, { desc = "LazyGit" }))
 
+-- Search
 map("n", "<leader>sb", function()
-	Snacks.picker.lines()
-end, { desc = "Buffer Lines" })
+	snacks.picker.lines()
+end, vim.tbl_extend("force", opts, { desc = "Buffer Lines" }))
 map("n", "<leader>sB", function()
-	Snacks.picker.grep_buffers()
-end, { desc = "Grep Open Buffers" })
+	snacks.picker.grep_buffers()
+end, vim.tbl_extend("force", opts, { desc = "Grep Buffers" }))
 map("n", "<leader>sg", function()
-	Snacks.picker.grep()
-end, { desc = "Grep" })
-map({ "n", "x" }, "<leader>sw", function()
-	Snacks.picker.grep_word()
-end, { desc = "Search Word" })
+	snacks.picker.grep()
+end, vim.tbl_extend("force", opts, { desc = "Grep" }))
+map("n", "<leader>sw", function()
+	snacks.picker.grep_word()
+end, vim.tbl_extend("force", opts, { desc = "Word" }))
+map("x", "<leader>sw", function()
+	snacks.picker.grep_word()
+end, vim.tbl_extend("force", opts, { desc = "Selection" }))
 map("n", '<leader>s"', function()
-	Snacks.picker.registers()
-end, { desc = "Registers" })
+	snacks.picker.registers()
+end, vim.tbl_extend("force", opts, { desc = "Registers" }))
 map("n", "<leader>sa", function()
-	Snacks.picker.autocmds()
-end, { desc = "Autocmds" })
+	snacks.picker.autocmds()
+end, vim.tbl_extend("force", opts, { desc = "Autocmds" }))
 map("n", "<leader>sc", function()
-	Snacks.picker.command_history()
-end, { desc = "Command History" })
+	snacks.picker.command_history()
+end, vim.tbl_extend("force", opts, { desc = "Commands" }))
 map("n", "<leader>sC", function()
-	Snacks.picker.commands()
-end, { desc = "Commands" })
+	snacks.picker.commands()
+end, vim.tbl_extend("force", opts, { desc = "All Commands" }))
 map("n", "<leader>sd", function()
-	Snacks.picker.diagnostics()
-end, { desc = "Diagnostics" })
+	snacks.picker.diagnostics()
+end, vim.tbl_extend("force", opts, { desc = "Diagnostics" }))
 map("n", "<leader>sD", function()
-	Snacks.picker.diagnostics_buffer()
-end, { desc = "Buffer Diagnostics" })
+	snacks.picker.diagnostics_buffer()
+end, vim.tbl_extend("force", opts, { desc = "Buffer Diag" }))
 map("n", "<leader>sh", function()
-	Snacks.picker.help()
-end, { desc = "Help Pages" })
+	snacks.picker.help()
+end, vim.tbl_extend("force", opts, { desc = "Help" }))
 map("n", "<leader>sH", function()
-	Snacks.picker.highlights()
-end, { desc = "Highlights" })
+	snacks.picker.highlights()
+end, vim.tbl_extend("force", opts, { desc = "Highlights" }))
 map("n", "<leader>si", function()
-	Snacks.picker.icons()
-end, { desc = "Icons" })
+	snacks.picker.icons()
+end, vim.tbl_extend("force", opts, { desc = "Icons" }))
 map("n", "<leader>sj", function()
-	Snacks.picker.jumps()
-end, { desc = "Jumps" })
+	snacks.picker.jumps()
+end, vim.tbl_extend("force", opts, { desc = "Jumps" }))
 map("n", "<leader>sk", function()
-	Snacks.picker.keymaps()
-end, { desc = "Keymaps" })
+	snacks.picker.keymaps()
+end, vim.tbl_extend("force", opts, { desc = "Keymaps" }))
 map("n", "<leader>sl", function()
-	Snacks.picker.loclist()
-end, { desc = "Location List" })
+	snacks.picker.loclist()
+end, vim.tbl_extend("force", opts, { desc = "Loclist" }))
 map("n", "<leader>sm", function()
-	Snacks.picker.marks()
-end, { desc = "Marks" })
+	snacks.picker.marks()
+end, vim.tbl_extend("force", opts, { desc = "Marks" }))
 map("n", "<leader>sM", function()
-	Snacks.picker.man()
-end, { desc = "Man Pages" })
+	snacks.picker.man()
+end, vim.tbl_extend("force", opts, { desc = "Man Pages" }))
 map("n", "<leader>sq", function()
-	Snacks.picker.qflist()
-end, { desc = "Quickfix List" })
+	snacks.picker.qflist()
+end, vim.tbl_extend("force", opts, { desc = "Quickfix" }))
 map("n", "<leader>sR", function()
-	Snacks.picker.resume()
-end, { desc = "Resume Picker" })
+	snacks.picker.resume()
+end, vim.tbl_extend("force", opts, { desc = "Resume" }))
 map("n", "<leader>su", function()
-	Snacks.picker.undo()
-end, { desc = "Undo History" })
-map("n", "<leader>uC", function()
-	Snacks.picker.colorschemes()
-end, { desc = "Colorschemes" })
+	snacks.picker.undo()
+end, vim.tbl_extend("force", opts, { desc = "Undo" }))
+map("n", "<leader>sn", function()
+	snacks.picker.notifications()
+end, vim.tbl_extend("force", opts, { desc = "Notifications" }))
 
+-- LSP
 map("n", "gd", function()
-	Snacks.picker.lsp_definitions()
-end, { desc = "Goto Definition" })
+	snacks.picker.lsp_definitions()
+end, vim.tbl_extend("force", opts, { desc = "Definition" }))
 map("n", "gD", function()
-	Snacks.picker.lsp_declarations()
-end, { desc = "Goto Declaration" })
+	snacks.picker.lsp_declarations()
+end, vim.tbl_extend("force", opts, { desc = "Declaration" }))
 map("n", "gr", function()
-	Snacks.picker.lsp_references()
-end, { desc = "LSP References" })
+	snacks.picker.lsp_references()
+end, vim.tbl_extend("force", opts, { desc = "References" }))
 map("n", "gI", function()
-	Snacks.picker.lsp_implementations()
-end, { desc = "Goto Implementation" })
+	snacks.picker.lsp_implementations()
+end, vim.tbl_extend("force", opts, { desc = "Implementation" }))
 map("n", "gy", function()
-	Snacks.picker.lsp_type_definitions()
-end, { desc = "Goto Type Definition" })
+	snacks.picker.lsp_type_definitions()
+end, vim.tbl_extend("force", opts, { desc = "Type Def" }))
 map("n", "<leader>ss", function()
-	Snacks.picker.lsp_symbols()
-end, { desc = "LSP Symbols" })
+	snacks.picker.lsp_symbols()
+end, vim.tbl_extend("force", opts, { desc = "Symbols" }))
 map("n", "<leader>sS", function()
-	Snacks.picker.lsp_workspace_symbols()
-end, { desc = "LSP Workspace Symbols" })
+	snacks.picker.lsp_workspace_symbols()
+end, vim.tbl_extend("force", opts, { desc = "Workspace Symbols" }))
 
-map("n", "<leader>z", function()
-	Snacks.zen()
-end, { desc = "Toggle Zen Mode" })
-map("n", "<leader>Z", function()
-	Snacks.zen.zoom()
-end, { desc = "Toggle Zoom" })
+-- Other
+map("n", "<leader>e", function()
+	snacks.explorer()
+end, vim.tbl_extend("force", opts, { desc = "Explorer" }))
 map("n", "<leader>.", function()
-	Snacks.scratch()
-end, { desc = "Toggle Scratch Buffer" })
+	snacks.scratch()
+end, vim.tbl_extend("force", opts, { desc = "Scratch" }))
 map("n", "<leader>S", function()
-	Snacks.scratch.select()
-end, { desc = "Select Scratch Buffer" })
+	snacks.scratch.select()
+end, vim.tbl_extend("force", opts, { desc = "Select Scratch" }))
 map("n", "<leader>n", function()
-	Snacks.notifier.show_history()
-end, { desc = "Notification History" })
+	snacks.notifier.show_history()
+end, vim.tbl_extend("force", opts, { desc = "Notifications" }))
 map("n", "<leader>un", function()
-	Snacks.notifier.hide()
-end, { desc = "Dismiss Notifications" })
+	snacks.notifier.hide()
+end, vim.tbl_extend("force", opts, { desc = "Dismiss Notifs" }))
 map("n", "<leader>bd", function()
-	Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
+	snacks.bufdelete()
+end, vim.tbl_extend("force", opts, { desc = "Delete Buffer" }))
 map("n", "<leader>cR", function()
-	Snacks.rename.rename_file()
-end, { desc = "Rename File" })
-map("n", "<leader>up", function()
-	Snacks.profiler.toggle()
-end, { desc = "Toggle Profiler" })
-map({ "n", "t" }, "<C-/>", function()
-	Snacks.terminal()
-end, { desc = "Toggle Terminal" })
-map({ "n", "t" }, "]]", function()
-	Snacks.words.jump(vim.v.count1)
-end, { desc = "Next Reference" })
-map({ "n", "t" }, "[[", function()
-	Snacks.words.jump(-vim.v.count1)
-end, { desc = "Prev Reference" })
+	snacks.rename.rename_file()
+end, vim.tbl_extend("force", opts, { desc = "Rename File" }))
+map("n", "<leader>z", function()
+	snacks.zen()
+end, vim.tbl_extend("force", opts, { desc = "Zen" }))
+map("n", "<leader>Z", function()
+	snacks.zen.zoom()
+end, vim.tbl_extend("force", opts, { desc = "Zoom" }))
+map("n", "<leader>uC", function()
+	snacks.picker.colorschemes()
+end, vim.tbl_extend("force", opts, { desc = "Colorscheme" }))
+
+-- Terminal
+map("n", "<c-/>", function()
+	snacks.terminal()
+end, vim.tbl_extend("force", opts, { desc = "Terminal" }))
+map("t", "<c-/>", function()
+	snacks.terminal()
+end, vim.tbl_extend("force", opts, { desc = "Terminal" }))
+
+-- Word navigation
+map("n", "]]", function()
+	snacks.words.jump(vim.v.count1)
+end, vim.tbl_extend("force", opts, { desc = "Next Ref" }))
+map("n", "[[", function()
+	snacks.words.jump(-vim.v.count1)
+end, vim.tbl_extend("force", opts, { desc = "Prev Ref" }))
+
+-- Neovim News
+map("n", "<leader>N", function()
+	snacks.win({
+		file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
+		width = 0.6,
+		height = 0.6,
+		wo = {
+			spell = false,
+			wrap = false,
+			signcolumn = "yes",
+			statuscolumn = " ",
+			conceallevel = 3,
+		},
+	})
+end, vim.tbl_extend("force", opts, { desc = "Neovim News" }))
+
+-- ========== TOGGLES (NO ANIMATION TOGGLES) ==========
+
+vim.schedule(function()
+	snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+	snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+	snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+	snacks.toggle.option("number", { name = "Line Numbers" }):map("<leader>ul")
+	snacks.toggle.diagnostics():map("<leader>ud")
+	snacks.toggle.line_number():map("<leader>uN")
+	snacks.toggle.option("conceallevel", { off = 0, on = 2, name = "Conceal" }):map("<leader>uc")
+	snacks.toggle.treesitter():map("<leader>uT")
+	snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Mode" }):map("<leader>ub")
+	snacks.toggle.inlay_hints():map("<leader>uh")
+	snacks.toggle.indent():map("<leader>ug")
+	snacks.toggle.dim():map("<leader>uD")
+	snacks.toggle.zen():map("<leader>uz")
+	snacks.toggle.zoom():map("<leader>uZ")
+
+	-- REMOVED animation toggles (scroll, animate) since they're disabled
+end)
+
+-- ========== DEBUG UTILITIES ==========
+
+_G.dd = function(...)
+	snacks.debug.inspect(...)
+end
+
+_G.bt = function()
+	snacks.debug.backtrace()
+end
+
+vim.print = _G.dd
+
+-- ========== PERFORMANCE AUTOCMDS ==========
+
+-- LSP attach notification
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			snacks.notify(client.name, { title = "LSP Attached", level = "info" })
+		end
+	end,
+})
+
+-- ========== STARTUP NOTIFICATION ==========
+
+vim.schedule(function()
+	snacks.notify("Snacks loaded (no animations)", { title = "Ready", level = "info", timeout = 1000 })
+end)
