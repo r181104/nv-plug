@@ -51,19 +51,10 @@ This configuration uses the following plugins:
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/r181104/nv-plug.git ~/.config/nvim
+    git clone -b plug https://github.com/r181104/neovim.git ~/.config/nvim
     ```
 
-2.  **Install `vim-plug`:**
-
-    Download `plug.vim` and place it in the `~/.config/nvim/autoload` directory.
-
-    ```bash
-    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    ```
-
-3.  **Install Plugins:**
+2.  **Install Plugins:**
 
     Open Neovim and run the following command to install all the plugins:
 
