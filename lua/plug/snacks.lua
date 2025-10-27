@@ -25,37 +25,22 @@ snacks.setup({
 	dashboard = {
 		enabled = true,
 		preset = {
-			header = [[
-			███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-			████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-			██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-			██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-			██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-			╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-			keys = {
-				{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart()" },
-				{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-				{ icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.picker.grep()" },
-				{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.picker.recent()" },
-				{
-					icon = " ",
-					key = "c",
-					desc = "Config",
-					action = ":lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })",
-				},
-				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+			header = {
+				[[                                        /$$            
+                                         |__/              
+ /$$$$$$$   /$$$$$$   /$$$$$$  /$$    /$$ /$$ /$$$$$$/$$$$ 
+| $$__  $$ /$$__  $$ /$$__  $$|  $$  /$$/| $$| $$_  $$_  $$
+| $$  \ $$| $$$$$$$$| $$  \ $$ \  $$/$$/ | $$| $$ \ $$ \ $$
+| $$  | $$| $$_____/| $$  | $$  \  $$$/  | $$| $$ | $$ | $$
+| $$  | $$|  $$$$$$$|  $$$$$$/   \  $/   | $$| $$ | $$ | $$
+|__/  |__/ \_______/ \______/     \_/    |__/|__/ |__/ |__/]],
 			},
 		},
 		sections = {
-			{
-				section = "terminal",
-				cmd = "fortune | lolcat; sleep .1",
-				random = 10,
-				height = 10,
-				padding = 1,
-			},
-			-- { section = "header" },
-			{ section = "keys", gap = 1, padding = 1 },
+			{ section = "header" },
+			{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+			{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+			{ icon = "󰿅 ", key = "q", desc = "Quit", action = ":qa" },
 		},
 	},
 
