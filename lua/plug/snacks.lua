@@ -26,12 +26,12 @@ snacks.setup({
 		enabled = true,
 		preset = {
 			header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+			███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+			████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+			██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+			██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+			██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+			╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
 			keys = {
 				{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart()" },
 				{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
@@ -47,7 +47,14 @@ snacks.setup({
 			},
 		},
 		sections = {
-			{ section = "header" },
+			{
+				section = "terminal",
+				cmd = "fortune | lolcat; sleep .1",
+				random = 10,
+				height = 10,
+				padding = 1,
+			},
+			-- { section = "header" },
 			{ section = "keys", gap = 1, padding = 1 },
 		},
 	},
@@ -614,8 +621,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
-
--- ========== STARTUP NOTIFICATION ==========
-vim.schedule(function()
-	snacks.notify("------------Snacks loaded------------", { title = "Ready", level = "info", timeout = 1000 })
-end)
