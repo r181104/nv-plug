@@ -178,8 +178,8 @@ snacks.setup({
 
 	statuscolumn = {
 		enabled = true,
-		left = { "mark", "sign" },
-		right = { "fold", "git" },
+		left = { "mark", "sign", "fold", "git" },
+		right = {},
 		folds = {
 			open = false,
 			git_hl = true,
@@ -630,3 +630,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
+
+vim.opt.foldcolumn = "0"
+vim.opt.signcolumn = "no"
