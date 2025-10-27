@@ -60,10 +60,9 @@ snacks.setup({
 	},
 
 	explorer = {
-		enabled = true,
+		enable = true,
 	},
 
-	-- Indent - ANIMATIONS DISABLED
 	indent = {
 		enabled = true,
 		indent = {
@@ -117,10 +116,28 @@ snacks.setup({
 
 	picker = {
 		enabled = true,
+		hidden = true,
 		layout = "left",
 		formatters = {
 			file = {
 				filename_first = true,
+			},
+			files = {
+				hidden = true,
+			},
+			grep = {
+				hidden = true,
+			},
+			sources = {
+				explorer = {
+					hidden = true,
+					ignored = true,
+					auto_close = true,
+					git_status = true,
+					diagnostics = true,
+					follow_file = true,
+					watch = true,
+				},
 			},
 		},
 		sources = {
@@ -165,12 +182,12 @@ snacks.setup({
 		right = { "fold", "git" },
 		folds = {
 			open = false,
-			git_hl = false,
+			git_hl = true,
 		},
 		git = {
 			patterns = { "GitSign", "MiniDiffSign" },
 		},
-		refresh = 50,
+		refresh = 60,
 	},
 
 	words = {
@@ -242,7 +259,6 @@ snacks.setup({
 			"avi",
 			"mkv",
 			"webm",
-			"pdf",
 			"icns",
 		},
 		backend = "auto",
@@ -296,6 +312,7 @@ snacks.setup({
 	},
 
 	terminal = {
+		enable = false,
 		win = {
 			position = "float",
 			border = "rounded",
@@ -548,14 +565,6 @@ map("n", "<leader>uC", function()
 	snacks.picker.colorschemes()
 end, vim.tbl_extend("force", opts, { desc = "Colorscheme" }))
 
--- Terminal
-map("n", "<c-/>", function()
-	snacks.terminal()
-end, vim.tbl_extend("force", opts, { desc = "Terminal" }))
-map("t", "<c-/>", function()
-	snacks.terminal()
-end, vim.tbl_extend("force", opts, { desc = "Terminal" }))
-
 -- Word navigation
 map("n", "]]", function()
 	snacks.words.jump(vim.v.count1)
@@ -568,11 +577,11 @@ end, vim.tbl_extend("force", opts, { desc = "Prev Ref" }))
 map("n", "<leader>N", function()
 	snacks.win({
 		file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-		width = 0.6,
-		height = 0.6,
+		width = 0.9,
+		height = 0.9,
 		wo = {
 			spell = false,
-			wrap = false,
+			wrap = true,
 			signcolumn = "yes",
 			statuscolumn = " ",
 			conceallevel = 3,
