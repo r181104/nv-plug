@@ -185,6 +185,7 @@ The leader key is set to `Space`.
 -   `ripgrep`
 -   `fd`
 -   A [Nerd Font](https://www.nerdfonts.com/)
+-   `lazygit` (optional, for `<leader>gg` mapping)
 
 ### Optional (for formatters)
 
@@ -198,9 +199,21 @@ The leader key is set to `Space`.
 -   `alejandra` (for Nix)
 -   `clang-format` (for C/C++)
 -   `gofumpt` and `goimports` (for Go)
+js
 -   `rustfmt` (for Rust)
 -   `google-java-format` (for Java)
 -   `sqlfluff` or `pg_format` (for SQL)
+
+### Optional (for LSP)
+
+- `lua-language-server`
+- `pyright`
+- `clangd`
+- `jdtls`
+- `rust-analyzer`
+- `typescript-language-server`
+- `tailwindcss-language-server`
+- `vscode-langservers-extracted` (for html, css, json)
 
 ---
 
