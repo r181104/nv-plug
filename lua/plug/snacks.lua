@@ -178,8 +178,8 @@ snacks.setup({
 
 	statuscolumn = {
 		enabled = true,
-		left = { "mark", "sign", "fold", "git" },
-		right = {},
+		left = { "mark", "sign" },
+		right = { "fold", "git" },
 		folds = {
 			open = false,
 			git_hl = true,
