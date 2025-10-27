@@ -23,9 +23,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = lsp_group,
 	callback = function(ev)
 		local buf = ev.buf
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-		-- Helper to map keys easily
 		local function map(mode, lhs, rhs, desc)
 			vim.keymap.set(mode, lhs, rhs, { buffer = buf, desc = desc })
 		end
@@ -59,8 +56,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.diagnostic.config({
-	virtual_lines = true,
-	-- virtual_text = true,
+	virtual_text = { only__current_line = true },
 	update_in_insert = false,
 	underline = true,
 	severity_sort = true,
@@ -68,7 +64,7 @@ vim.diagnostic.config({
 		border = "rounded",
 		source = true,
 	},
-	signs = vim.g.have_nerd_font and {
+	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
 			[vim.diagnostic.severity.WARN] = "󰀪 ",
@@ -77,8 +73,10 @@ vim.diagnostic.config({
 		},
 	},
 	numhl = {
-		[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-		[vim.diagnostic.severity.WARN] = "WarningMsg",
+		[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+		[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+		[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+		[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
 	},
 })
 

@@ -76,7 +76,7 @@ snacks.setup({
 			char = "│",
 			underline = true,
 			animate = {
-				enabled = false, -- DISABLED
+				enabled = false,
 			},
 		},
 	},
@@ -86,8 +86,8 @@ snacks.setup({
 		icon = "❯ ",
 		win = {
 			relative = "editor",
-			row = "50%",
-			col = "50%",
+			row = 4,
+			col = 18,
 			width = 60,
 			height = 1,
 			border = "rounded",
@@ -106,8 +106,8 @@ snacks.setup({
 		level = vim.log.levels.TRACE,
 		icons = {
 			error = "",
-			warn = "⚠️",
-			info = "ℹ️",
+			warn = "",
+			info = "󰋼",
 			debug = "",
 			trace = "󰴽",
 		},
