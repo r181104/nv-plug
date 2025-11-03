@@ -23,7 +23,7 @@ snacks.setup({
 	},
 
 	dashboard = {
-		enabled = false,
+		enabled = true,
 		preset = {
 			header = [[
      ████ ██████           █████                          
