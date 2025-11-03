@@ -9,8 +9,8 @@ require("gitsigns").setup({
 	},
 	signcolumn = true,
 	numhl = false,
-	linehl = true,
-	word_diff = true,
+	linehl = false,
+	word_diff = false,
 	current_line_blame = false,
 	current_line_blame_opts = {
 		virt_text = true,

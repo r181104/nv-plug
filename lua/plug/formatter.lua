@@ -4,24 +4,23 @@ conform.setup({
 	formatters_by_ft = {
 		-- Core languages
 		lua = { "stylua" },
-		python = { "isort", "black" },
-		haskell = { "hindent" },
+		python = { "ruff_organize_imports", "ruff_format" },
 
 		-- Web / frontend
-		javascript = { "prettierd", "prettier" },
-		javascriptreact = { "prettierd", "prettier" },
-		typescript = { "prettierd", "prettier" },
-		typescriptreact = { "prettierd", "prettier" },
-		html = { "prettierd", "prettier" },
-		css = { "prettierd", "prettier" },
-		scss = { "prettierd", "prettier" },
-		less = { "prettierd", "prettier" },
-		json = { "jq" },
-		jsonc = { "jq" },
-		markdown = { "prettierd", "prettier" },
-		vue = { "prettierd", "prettier" },
-		svelte = { "prettierd", "prettier" },
-		yaml = { "jq" },
+		javascript = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		typescript = { "prettierd" },
+		typescriptreact = { "prettierd" },
+		html = { "prettierd" },
+		css = { "prettierd" },
+		scss = { "prettierd" },
+		less = { "prettierd" },
+		json = { "prettierd" },
+		jsonc = { "prettierd" },
+		markdown = { "prettierd" },
+		vue = { "prettierd" },
+		svelte = { "prettierd" },
+		yaml = { "prettierd" },
 
 		-- Infra / scripts
 		sh = { "shfmt" },
@@ -39,14 +38,14 @@ conform.setup({
 		java = { "google-java-format" },
 
 		-- Data / query
-		sql = { "sqlfluff", "pg_format" },
-		toml = { "jq" },
+		sql = { "sqruff" },
+		toml = { "prettierd" },
 	},
 
 	formatters = {
 		shfmt = {
 			command = "shfmt",
-			args = { "-i", "2", "-ci" },
+			args = { "-i", "2", "-bn", "-ci", "-ln", "bash" },
 			stdin = true,
 		},
 		fish_indent = {
@@ -54,9 +53,9 @@ conform.setup({
 			args = { "-" },
 			stdin = true,
 		},
-		jq = {
-			command = "jq",
-			args = { "." },
+		sqruff = {
+			command = "sqruff",
+			args = { "format", "-" },
 			stdin = true,
 		},
 	},

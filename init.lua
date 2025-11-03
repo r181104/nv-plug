@@ -32,6 +32,8 @@ Plug("neovim/nvim-lspconfig")
 Plug("stevearc/conform.nvim")
 -- NOTE: For completion
 Plug("saghen/blink.cmp")
+-- NOTE: For easy Deletions
+Plug("nvim-mini/mini.ai")
 -- NOTE: Mini Plugins
 Plug("nvim-mini/mini.statusline")
 Plug("nvim-mini/mini.hipatterns")
@@ -55,6 +57,7 @@ require("plug.cmd")
 require("plug.colors")
 require("plug.snacks")
 require("plug.lsp-cmp")
+require("plug.mini-ai")
 require("plug.whichkey")
 require("plug.autopairs")
 require("plug.formatter")

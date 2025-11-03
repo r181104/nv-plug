@@ -3,12 +3,14 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 local vim = vim
-local opts = { noremap = true, silent = true }
+local opts = { noremap = true, silent = false }
 
 -- General
-map({ "n", "i", "c", "v", "x" }, "<C-c>", "<Esc>", opts)
-map({ "n", "v", "c", "x" }, ";", ":", opts)
-map("n", "<leader>cd", vim.cmd.Ex, opts)
+map({ "n", "i", "v", "c", "t", "x", "s", "o" }, "<C-c>", "<Esc>", opts)
+map({ "n", "v", "c", "t", "x", "s", "o" }, ";", ":", opts)
+map("n", "<C-_>", "gcc", { remap = true, desc = "Toggle comment" })
+map({ "v", "c", "t", "x", "s", "o" }, "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
+map("n", "<leader>cd", ":Ex<CR>", opts)
 map("n", "<leader>so", ":update<CR> :source<CR>", opts)
 map("n", "<leader>si", "source ~/.config/nvim/init.lua<CR>", opts)
 map("n", "<leader>rr", ":restart<CR>", opts)

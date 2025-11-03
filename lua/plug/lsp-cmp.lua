@@ -25,7 +25,7 @@ vim.lsp.config("*", {
 -- Enable your LSP servers
 vim.lsp.enable({
 	"lua_ls",
-	"pyright",
+	"pylsp",
 	"clangd",
 	"jdtls",
 	"rust_analyzer",
