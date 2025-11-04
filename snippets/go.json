@@ -1,7 +1,12 @@
-[
-  {
+{
+  "main function": {
     "prefix": "main",
-    "body": "package main\n\nfunc main() {\n\t$1\n}",
-    "desc": "Go main function"
+    "body": ["package main", "", "func main() {", "\t$0", "}"],
+    "description": "Main function template"
+  },
+  "print": {
+    "prefix": "pln",
+    "body": "fmt.Println($1)$0",
+    "description": "Print with newline"
   }
-]
+}
