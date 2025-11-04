@@ -28,6 +28,9 @@ Plug("stevearc/oil.nvim")
 Plug("lewis6991/gitsigns.nvim")
 -- NOTE: For Language Server Protocol
 Plug("neovim/nvim-lspconfig")
+-- NOTE: For snippets
+Plug("L3MON4D3/LuaSnip")
+Plug("rafamadriz/friendly-snippets")
 -- NOTE: For Formatting
 Plug("stevearc/conform.nvim")
 -- NOTE: For completion
@@ -37,7 +40,6 @@ Plug("nvim-mini/mini.ai")
 -- NOTE: Mini Plugins
 Plug("nvim-mini/mini.statusline")
 Plug("nvim-mini/mini.hipatterns")
-Plug("nvim-mini/mini.snippets")
 -- NOTE: Snacks from Folke
 Plug("folke/snacks.nvim")
 Plug("nvim-lua/plenary.nvim")
