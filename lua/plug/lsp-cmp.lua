@@ -96,6 +96,7 @@ vim.lsp.enable({
 	"vtsls",
 	"lua_ls",
 	"clangd",
+	"postgres_lsp",
 	"tailwindcss",
 	"rust_analyzer",
 })
