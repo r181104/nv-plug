@@ -1,4 +1,4 @@
-# [![Alt text](https://raw.githubusercontent.com/r181104/Wallpapers/refs/heads/master/logo/python.jpg)](https://your-link.com) A Modern Neovim Configuration
+# [<img src="https://raw.githubusercontent.com/r181104/Wallpapers/refs/heads/master/logo/python.jpg" width="10" height="10">](https://your-link.com) A Modern Neovim Configuration
 
 A sleek and functional Neovim setup powered by Lua, `vim-plug`, and a collection of modern plugins. This configuration is designed to be fast, easy to use, and highly customizable.
 
