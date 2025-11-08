@@ -33,11 +33,13 @@ This configuration uses the following plugins:
 | [oil.nvim](https://github.com/stevearc/oil.nvim) | A file explorer for Neovim. |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration for the sign column. |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | Configurations for the Neovim LSP client. |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | A snippet engine for Neovim. |
+| [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) | A collection of snippets for various programming languages. |
 | [conform.nvim](https://github.com/stevearc/conform.nvim) | A formatting plugin for Neovim. |
 | [blink.cmp](https://github.com/saghen/blink.cmp) | A fast and lightweight completion plugin for Neovim. |
+| [mini.ai](https://github.com/nvim-mini/mini.ai) | A plugin for extending and creating `a` and `i` textobjects. |
 | [mini.statusline](https://github.com/nvim-mini/mini.statusline) | A minimalist statusline for Neovim. |
 | [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) | A plugin for highlighting patterns in code. |
-| [mini.snippets](https://github.com/nvim-mini/mini.snippets) | A snippet plugin for Neovim. |
 | [snacks.nvim](https://github.com/folke/snacks.nvim) | A collection of UI and workflow enhancements. |
 | [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | A library of useful Lua functions for Neovim. |
 | [which-key.nvim](https://github.com/folke/which-key.nvim) | A keybinding helper for Neovim. |
@@ -81,8 +83,8 @@ The leader key is set to `Space`.
 
 | Keybinding | Description |
 | --- | --- |
-| `<leader>E` | Toggle file explorer (`oil.nvim`) |
-| `<leader>e` | Toggle file explorer in a floating window |
+| `<leader>cd` | Open file explorer (`oil.nvim`) |
+| `<leader>e` | Toggle file explorer in a floating window (`snacks.nvim`) |
 | `<leader>fm` | Format the current buffer |
 | `<leader>w` | Write (save) the current file |
 | `<leader>q` | Quit Neovim |
@@ -95,6 +97,7 @@ The leader key is set to `Space`.
 | `<leader>y` | Yank to system clipboard |
 | `<C-h/j/k/l>` | Navigate between window splits |
 | `;` | Enter command mode (`:`) |
+| `<C-_>` | Toggle comment |
 
 ### Snacks.nvim
 
@@ -110,6 +113,7 @@ The leader key is set to `Space`.
 | `<leader>ff` | Find Files |
 | `<leader>fg` | Find Git Files |
 | `<leader>fr` | Recent Files |
+| `<leader>fp` | Projects |
 | `<leader>gb` | Git Branches |
 | `<leader>gl` | Git Log |
 | `<leader>gL` | Git Log Line |
@@ -140,6 +144,7 @@ The leader key is set to `Space`.
 | `<leader>sq` | Quickfix List |
 | `<leader>sR` | Resume Picker |
 | `<leader>su` | Undo History |
+| `<leader>sn` | Notifications |
 | `<leader>uC` | Colorschemes |
 | `gd` | Goto Definition |
 | `gD` | Goto Declaration |
@@ -156,16 +161,16 @@ The leader key is set to `Space`.
 | `<leader>un` | Dismiss Notifications |
 | `<leader>bd` | Delete Buffer |
 | `<leader>cR` | Rename File |
-| `<leader>up` | Toggle Profiler |
-| `<C-/>` | Toggle Terminal |
 
 ### Text Editing
 
 | Keybinding | Description |
 | --- | --- |
 | `J` / `K` | In Visual mode, move selected lines |
+| `J` | In Normal mode, join lines without moving the cursor |
 | `<C-d>` | Scroll down, keeping cursor centered |
 | `<C-u>` | Scroll up, keeping cursor centered |
+| `n` / `N` | After searching, recenter the view |
 
 ## ✅ Dependencies
 
@@ -181,30 +186,31 @@ The leader key is set to `Space`.
 ### Optional (for formatters)
 
 -   `stylua` (for Lua)
--   `isort` and `black` (for Python)
--   `hindent` (for Haskell)
--   `prettierd` or `prettier` (for web development)
--   `jq` (for JSON, YAML, TOML)
+-   `ruff` (for Python)
+-   `prettierd` (for web development)
 -   `shfmt` (for shell scripts)
 -   `fish_indent` (for Fish)
 -   `alejandra` (for Nix)
 -   `clang-format` (for C/C++)
 -   `gofumpt` and `goimports` (for Go)
-js
 -   `rustfmt` (for Rust)
 -   `google-java-format` (for Java)
--   `sqlfluff` or `pg_format` (for SQL)
+-   `sqruff` (for SQL)
 
 ### Optional (for LSP)
 
-- `lua-language-server`
-- `pyright`
+- `lua_ls`
+- `pylsp`
 - `clangd`
 - `jdtls`
 - `rust-analyzer`
-- `typescript-language-server`
-- `tailwindcss-language-server`
-- `vscode-langservers-extracted` (for html, css, json)
+- `ts_ls`
+- `vtsls`
+- `tailwindcss`
+- `html`
+- `cssls`
+- `gopls`
+- `postgres_lsp`
 
 ---
 
