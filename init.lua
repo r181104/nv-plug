@@ -36,7 +36,9 @@ Plug("stevearc/conform.nvim")
 -- NOTE: For completion
 Plug("saghen/blink.cmp")
 -- NOTE: Mini Plugins
-Plug("nvim-mini/mini.nvim")
+Plug("nvim-mini/mini.ai")
+Plug("nvim-mini/mini.statusline")
+Plug("nvim-mini/mini.hipatterns")
 -- NOTE: Snacks For just some plugins
 Plug("folke/snacks.nvim")
 -- NOTE: Explorer
@@ -51,13 +53,10 @@ Plug("nvim-tree/nvim-web-devicons")
 
 vim.call("plug#end")
 
+require("plug.ai")
 require("plug.git")
 require("plug.cmd")
 require("plug.oil")
-require("plug.base")
-require("plug.line")
-require("plug.glow")
-require("plug.diff")
 require("plug.snacks")
 require("plug.colors")
 require("plug.lsp-cmp")
