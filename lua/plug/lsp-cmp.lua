@@ -44,7 +44,7 @@ vim.keymap.set({ "i", "s" }, "<C-e>", function()
 end, { silent = true })
 
 -- ============================================================================
--- BLINK.CMP SETUP
+-- BLINK.CMP SETUP (PyCharm-like behavior)
 -- ============================================================================
 
 require("blink.cmp").setup({
@@ -64,15 +64,47 @@ require("blink.cmp").setup({
 	},
 	fuzzy = { implementation = "lua" },
 	keymap = {
-		preset = "default",
+		preset = "none", -- Start with no default mappings for full control
+		-- Tab to select next item (navigate down)
 		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		-- Shift+Tab to select previous item (navigate up)
 		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+		-- Enter to accept the selected completion
+		["<CR>"] = { "accept", "fallback" },
+		-- Ctrl+Space to manually trigger completion (PyCharm style)
+		["<C-Space>"] = { "show", "hide_documentation" },
+		-- Escape to close the menu
+		["<Esc>"] = { "hide", "fallback" },
+		-- Ctrl+e for documentation (similar to PyCharm's quick doc)
+		["<C-j>"] = { "show_documentation", "hide_documentation" },
+		-- Scroll documentation
+		["<C-u>"] = { "scroll_documentation_up", "fallback" },
+		["<C-d>"] = { "scroll_documentation_down", "fallback" },
 	},
 	signature = { enabled = true },
 	appearance = { nerd_font_variant = "mono" },
 	completion = {
-		documentation = { auto_show = true, auto_show_delay_ms = 200 },
+		-- Only show suggestions when you start typing (not on blank lines)
+		trigger = {
+			show_on_keyword = true, -- Show after typing keyword characters
+			show_on_trigger_character = true, -- Show on LSP trigger characters (like . or ::)
+		},
+		menu = {
+			auto_show = true, -- Automatically show menu when triggered
+		},
+		list = {
+			selection = {
+				preselect = true, -- Preselect first item (PyCharm behavior)
+				auto_insert = false, -- Don't auto-insert, require Enter key
+			},
+		},
+		documentation = {
+			auto_show = true,
+			auto_show_delay_ms = 200,
+		},
 		keyword = { range = "prefix" },
+		-- Ghost text disabled for PyCharm-like experience (optional, can enable if you like)
+		ghost_text = { enabled = false },
 	},
 })
 
