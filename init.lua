@@ -35,14 +35,12 @@ Plug("rafamadriz/friendly-snippets")
 Plug("stevearc/conform.nvim")
 -- NOTE: For completion
 Plug("saghen/blink.cmp")
--- NOTE: For easy Deletions
-Plug("nvim-mini/mini.ai")
 -- NOTE: Mini Plugins
-Plug("nvim-mini/mini.statusline")
-Plug("nvim-mini/mini.hipatterns")
--- NOTE: Snacks from Folke
+Plug("nvim-mini/mini.nvim")
+-- NOTE: Snacks For just some plugins
 Plug("folke/snacks.nvim")
-Plug("nvim-lua/plenary.nvim")
+-- NOTE: Explorer
+Plug("stevearc/oil.nvim")
 -- NOTE: For Keyboard Shortcuts Help
 Plug("folke/which-key.nvim")
 Plug("windwp/nvim-autopairs")
@@ -50,19 +48,19 @@ Plug("windwp/nvim-autopairs")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 -- NOTE: Icons
 Plug("nvim-tree/nvim-web-devicons")
-Plug("nvim-mini/mini.icons")
 
 vim.call("plug#end")
 
 require("plug.git")
 require("plug.cmd")
-require("plug.colors")
+require("plug.oil")
+require("plug.base")
+require("plug.line")
+require("plug.glow")
+require("plug.diff")
 require("plug.snacks")
+require("plug.colors")
 require("plug.lsp-cmp")
-require("plug.mini-ai")
 require("plug.whichkey")
 require("plug.autopairs")
 require("plug.formatter")
-require("plug.treesitter")
-require("plug.statusline")
-require("plug.hipatterns")

@@ -42,7 +42,7 @@ snacks.setup({
 	},
 
 	explorer = {
-		enable = true,
+		enable = false,
 	},
 
 	indent = {
@@ -516,9 +516,6 @@ map("n", "<leader>sS", function()
 end, vim.tbl_extend("force", opts, { desc = "Workspace Symbols" }))
 
 -- Other
-map("n", "<leader>e", function()
-	snacks.explorer()
-end, vim.tbl_extend("force", opts, { desc = "Explorer" }))
 map("n", "<leader>.", function()
 	snacks.scratch()
 end, vim.tbl_extend("force", opts, { desc = "Scratch" }))
