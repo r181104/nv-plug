@@ -37,10 +37,13 @@ Plug("stevearc/conform.nvim")
 Plug("saghen/blink.cmp")
 -- NOTE: Mini Plugins
 Plug("nvim-mini/mini.ai")
+Plug("nvim-mini/mini.icons")
 Plug("nvim-mini/mini.statusline")
 Plug("nvim-mini/mini.hipatterns")
 -- NOTE: Snacks For just some plugins
 Plug("folke/snacks.nvim")
+-- NOTE: For plenary
+Plug("nvim-lua/plenary.nvim")
 -- NOTE: Explorer
 Plug("stevearc/oil.nvim")
 -- NOTE: For Keyboard Shortcuts Help
