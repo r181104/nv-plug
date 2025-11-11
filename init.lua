@@ -22,8 +22,6 @@ Plug("folke/noice.nvim")
 Plug("MunifTanjim/nui.nvim")
 -- NOTE: Notifier
 Plug("rcarriga/nvim-notify")
--- NOTE: For File Explorer
-Plug("stevearc/oil.nvim")
 -- NOTE: For gitsigns
 Plug("lewis6991/gitsigns.nvim")
 -- NOTE: For Language Server Protocol
@@ -42,8 +40,6 @@ Plug("nvim-mini/mini.statusline")
 Plug("nvim-mini/mini.hipatterns")
 -- NOTE: Snacks For just some plugins
 Plug("folke/snacks.nvim")
--- NOTE: Explorer
-Plug("stevearc/oil.nvim")
 -- NOTE: For Keyboard Shortcuts Help
 Plug("folke/which-key.nvim")
 Plug("windwp/nvim-autopairs")
@@ -56,7 +52,6 @@ vim.call("plug#end")
 
 require("plug.ai")
 require("plug.git")
-require("plug.oil")
 require("plug.cmd")
 require("plug.glow")
 require("plug.line")

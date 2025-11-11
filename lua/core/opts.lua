@@ -43,6 +43,8 @@ vim.o.scrolloff = 8
 vim.o.winborder = "rounded"
 
 vim.g.have_nerd_font = true
+vim.g.loaded_netrw = nil
+vim.g.loaded_netrwPlugin = nil
 
 vim.scriptencoding = "utf-8"
 vim.o.encoding = "utf-8"
