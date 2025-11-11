@@ -23,6 +23,16 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("n", "<C-c>", "<cmd>nohlsearch<CR>", opts)
 map({ "n", "v" }, "<Leader>y", '"+y', opts)
 
+-- To Travel between splits or panes you may call it
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-S-j>", "<C-w>j", opts)
+map("n", "<C-S-k>", "<C-w>k", opts)
+map("n", "<C-S-l>", "<C-w>l", opts)
+map("n", "<C-S-h>", "<C-w>h", opts)
+
 -- Prime's remaps
 map("v", "K", ":m '<-2<CR>gv=gv")
 map("v", "J", ":m '>+1<CR>gv=gv")
