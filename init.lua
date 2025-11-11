@@ -50,11 +50,9 @@ Plug("nvim-tree/nvim-web-devicons")
 
 vim.call("plug#end")
 
-require("plug.ai")
 require("plug.git")
 require("plug.cmd")
-require("plug.glow")
-require("plug.line")
+require("plug.mini")
 require("plug.notify")
 require("plug.snacks")
 require("plug.colors")
