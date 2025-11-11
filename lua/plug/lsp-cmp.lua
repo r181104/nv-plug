@@ -23,14 +23,14 @@ require("luasnip.loaders.from_vscode").lazy_load({
 -- ============================================================================
 
 -- Jump forward in snippet
-vim.keymap.set({ "i", "s" }, "<C-l>", function()
+vim.keymap.set({ "i", "s" }, "<C-n>", function()
 	if ls.jumpable(1) then
 		ls.jump(1)
 	end
 end, { silent = true })
 
 -- Jump backward in snippet
-vim.keymap.set({ "i", "s" }, "<C-h>", function()
+vim.keymap.set({ "i", "s" }, "<C-p>", function()
 	if ls.jumpable(-1) then
 		ls.jump(-1)
 	end
@@ -67,8 +67,10 @@ require("blink.cmp").setup({
 		preset = "none", -- Start with no default mappings for full control
 		-- Tab to select next item (navigate down)
 		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		["<C-n>"] = { "select_next", "snippet_forward", "fallback" },
 		-- Shift+Tab to select previous item (navigate up)
 		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+		["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
 		-- Enter to accept the selected completion
 		["<CR>"] = { "accept", "fallback" },
 		-- Ctrl+Space to manually trigger completion (PyCharm style)
@@ -76,7 +78,7 @@ require("blink.cmp").setup({
 		-- Escape to close the menu
 		["<Esc>"] = { "hide", "fallback" },
 		-- Ctrl+e for documentation (similar to PyCharm's quick doc)
-		["<C-j>"] = { "show_documentation", "hide_documentation" },
+		["<C-e>"] = { "show_documentation", "hide_documentation" },
 		-- Scroll documentation
 		["<C-u>"] = { "scroll_documentation_up", "fallback" },
 		["<C-d>"] = { "scroll_documentation_down", "fallback" },

@@ -22,10 +22,6 @@ map("n", "<leader>bp", ":bp<CR>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("n", "<C-c>", "<cmd>nohlsearch<CR>", opts)
 map({ "n", "v" }, "<Leader>y", '"+y', opts)
-map("n", "<C-h>", "<C-w>h", opts)
-map("n", "<C-j>", "<C-w>j", opts)
-map("n", "<C-k>", "<C-w>k", opts)
-map("n", "<C-l>", "<C-w>l", opts)
 
 -- Prime's remaps
 map("v", "K", ":m '<-2<CR>gv=gv")

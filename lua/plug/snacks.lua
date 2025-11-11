@@ -42,7 +42,17 @@ snacks.setup({
 	},
 
 	explorer = {
-		enable = false,
+		enabled = true,
+		tree = true,
+		watch = true,
+		git_status = true,
+		git_untracked = false,
+		diagnostics = true,
+		hidden = true,
+		ignored = false,
+		follow_file = true,
+		exclude = { "node_modules/**", ".git/**", "__pycache__/**" },
+		include = { "src/**", "lib/**" },
 	},
 
 	indent = {
