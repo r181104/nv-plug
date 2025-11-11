@@ -119,6 +119,14 @@ snacks.setup({
 					diagnostics = true,
 					follow_file = true,
 					watch = true,
+					icons = {
+						tree = {
+							vertical = "│ ",
+							middle = "├ ",
+							last = "└ ",
+						},
+					},
+					layout = { preset = "sidebar", width = 40 },
 				},
 			},
 		},
@@ -516,6 +524,9 @@ map("n", "<leader>sS", function()
 end, vim.tbl_extend("force", opts, { desc = "Workspace Symbols" }))
 
 -- Other
+map("n", "<leader>e", function()
+	snacks.explorer()
+end, vim.tbl_extend("force", opts, { desc = "Toggle Explorer" }))
 map("n", "<leader>.", function()
 	snacks.scratch()
 end, vim.tbl_extend("force", opts, { desc = "Scratch" }))

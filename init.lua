@@ -42,8 +42,6 @@ Plug("nvim-mini/mini.statusline")
 Plug("nvim-mini/mini.hipatterns")
 -- NOTE: Snacks For just some plugins
 Plug("folke/snacks.nvim")
--- NOTE: For plenary
-Plug("nvim-lua/plenary.nvim")
 -- NOTE: Explorer
 Plug("stevearc/oil.nvim")
 -- NOTE: For Keyboard Shortcuts Help
@@ -58,11 +56,15 @@ vim.call("plug#end")
 
 require("plug.ai")
 require("plug.git")
-require("plug.cmd")
 require("plug.oil")
+require("plug.cmd")
+require("plug.glow")
+require("plug.line")
+require("plug.notify")
 require("plug.snacks")
 require("plug.colors")
 require("plug.lsp-cmp")
 require("plug.whichkey")
-require("plug.autopairs")
 require("plug.formatter")
+require("plug.autopairs")
+require("plug.treesitter")
