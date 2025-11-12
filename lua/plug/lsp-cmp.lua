@@ -83,7 +83,14 @@ require("blink.cmp").setup({
 		["<C-u>"] = { "scroll_documentation_up", "fallback" },
 		["<C-d>"] = { "scroll_documentation_down", "fallback" },
 	},
-	signature = { enabled = true },
+	signature = {
+		enabled = true,
+		window = {
+			max_height = 8,
+			max_width = 60,
+			border = "rounded",
+		},
+	},
 	appearance = { nerd_font_variant = "mono" },
 	completion = {
 		-- Only show suggestions when you start typing (not on blank lines)
@@ -106,7 +113,7 @@ require("blink.cmp").setup({
 		},
 		keyword = { range = "prefix" },
 		-- Ghost text disabled for PyCharm-like experience (optional, can enable if you like)
-		ghost_text = { enabled = false },
+		ghost_text = { enabled = true },
 	},
 })
 

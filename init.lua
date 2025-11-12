@@ -47,6 +47,8 @@ Plug("windwp/nvim-autopairs")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 -- NOTE: Icons
 Plug("nvim-tree/nvim-web-devicons")
+-- NOTE: Copilot
+Plug("github/copilot.vim")
 
 vim.call("plug#end")
 

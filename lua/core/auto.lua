@@ -56,13 +56,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.diagnostic.config({
-	virtual_text = { only__current_line = true },
+	virtual_text = {
+		current_line = true,
+		severity = { min = vim.diagnostic.severity.WARN },
+	},
 	update_in_insert = false,
 	underline = true,
 	severity_sort = true,
 	float = {
 		border = "rounded",
 		source = true,
+		max_width = 80,
+		max_height = 20,
+		focusable = false,
+		close_events = { "BufLeave", "CursorMoved", "InsertEnter" },
 	},
 	signs = {
 		text = {
