@@ -1,3 +1,15 @@
+-- === For github/copilot.vim ===
+vim.g.copilot_settings = {
+	selectedCompletionModel = "gpt-4o-copilot",
+}
+vim.keymap.set("i", "<A-p>", 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false,
+	silent = true,
+})
+vim.g.copilot_no_tab_map = true
+
+-- === For CopilotC-Nvim/CopilotChat.nvim ===
 require("CopilotChat").setup({
 	model = "gpt-5.1", -- AI model to use
 	temperature = 0.1, -- Lower = focused, higher = creative
@@ -30,9 +42,3 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.opt_local.conceallevel = 0
 	end,
 })
-vim.keymap.set("i", "<A-p>", 'copilot#Accept("\\<CR>")', {
-	expr = true,
-	replace_keycodes = false,
-	silent = true,
-})
-vim.g.copilot_no_tab_map = true

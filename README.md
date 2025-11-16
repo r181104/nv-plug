@@ -31,7 +31,6 @@ This configuration uses the following plugins:
 | [noice.nvim](https://github.com/folke/noice.nvim)                     | A modern command-line experience for Neovim.                 |
 | [nui.nvim](https://github.com/MunifTanjim/nui.nvim)                   | A UI component library for Neovim.                           |
 | [nvim-notify](https://github.com/rcarriga/nvim-notify)                | A notification manager for Neovim.                           |
-| [oil.nvim](https://github.com/stevearc/oil.nvim)                      | A file explorer for Neovim.                                  |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)           | Git integration for the sign column.                         |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)            | Configurations for the Neovim LSP client.                    |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                        | A snippet engine for Neovim.                                 |
@@ -48,8 +47,8 @@ This configuration uses the following plugins:
 | [nvim-autopairs](https://github.com/windwp/nvim-autopairs)            | A plugin for auto-closing pairs.                             |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Advanced syntax highlighting for Neovim.                     |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)   | Icons for Neovim.                                            |
-| [glow.nvim](https://github.com/npxbr/glow.nvim)                       | A markdown preview plugin for Neovim.                        |
-| [bigfile.nvim](https://github.com/LunarVim/bigfile.nvim)              | A plugin for editing large files in Neovim.                  |
+| [copilot.vim](https://github.com/github/copilot.vim)                  | GitHub Copilot integration for Neovim.                       |
+| [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) | Chat with GitHub Copilot in Neovim.                          |
 
 ## 🚀 Installation
 
@@ -84,96 +83,105 @@ The leader key is set to `Space`.
 
 ### General
 
-| Keybinding | Description |
-| --- | --- |
-| `<leader>e` | Toggle Oil in floating window |
-| `<leader>E` | Toggle Oil file explorer |
-| `<leader>fm` | Format the current buffer |
-| `<leader>w` | Write (save) the current file |
-| `<leader>q` | Quit Neovim |
-| `<leader>so` | Source the current file |
-| `<leader>si` | Source `init.lua` |
-| `<leader>rr` | Restart Neovim |
-| `<leader>bc` | New empty buffer |
-| `<leader>bn` | Next buffer |
-| `<leader>bp` | Previous buffer |
-| `<leader>y` | Yank to system clipboard |
-| `<C-h/j/k/l>` | Navigate between window splits |
-| `;` | Enter command mode (`:`) |
-| `<C-_>` | Toggle comment |
+| Keybinding    | Description                                 |
+| ------------- | ------------------------------------------- |
+| `<leader>cd`  | Open file explorer in the current directory |
+| `<leader>vd`  | Open file explorer in a vertical split      |
+| `<leader>sd`  | Open file explorer in a horizontal split    |
+| `<leader>fm`  | Format the current buffer                   |
+| `<leader>w`   | Write (save) the current file               |
+| `<leader>q`   | Quit Neovim                                 |
+| `<leader>ex`  | Force quit Neovim                           |
+| `<leader>so`  | Source the current file                     |
+| `<leader>si`  | Source `init.lua`                           |
+| `<leader>rr`  | Restart Neovim                              |
+| `<leader>bc`  | New empty buffer                            |
+| `<leader>bn`  | Next buffer                                 |
+| `<leader>bp`  | Previous buffer                             |
+| `<leader>y`   | Yank to system clipboard                    |
+| `<C-h/j/k/l>` | Navigate between window splits              |
+| `;`           | Enter command mode (`:`)                    |
+| `<C-_>`       | Toggle comment                              |
+
+### Copilot
+
+| Keybinding   | Description                              |
+| ------------ | ---------------------------------------- |
+| `<A-p>`      | To accept the suggestions by copilot.vim |
+| `<leader>cc` | To toggle copilot chat                   |
 
 ### Snacks.nvim
 
-| Keybinding | Description |
-| --- | --- |
-| `<leader><space>` | Smart Find Files |
-| `<leader>,` | Buffers |
-| `<leader>/` | Grep |
-| `<leader>:` | Command History |
-| `<leader>e` | File Explorer |
-| `<leader>fb` | Buffers |
-| `<leader>fc` | Find Config File |
-| `<leader>ff` | Find Files |
-| `<leader>fg` | Find Git Files |
-| `<leader>fr` | Recent Files |
-| `<leader>fp` | Projects |
-| `<leader>gb` | Git Branches |
-| `<leader>gl` | Git Log |
-| `<leader>gL` | Git Log Line |
-| `<leader>gs` | Git Status |
-| `<leader>gS` | Git Stash |
-| `<leader>gd` | Git Diff |
-| `<leader>gf` | Git Log File |
-| `<leader>gB` | Git Browse |
-| `<leader>gg` | Lazygit |
-| `<leader>sb` | Buffer Lines |
-| `<leader>sB` | Grep Open Buffers |
-| `<leader>sg` | Grep |
-| `<leader>sw` | Search Word |
-| `<leader>s"` | Registers |
-| `<leader>sa` | Autocmds |
-| `<leader>sc` | Command History |
-| `<leader>sC` | Commands |
-| `<leader>sd` | Diagnostics |
-| `<leader>sD` | Buffer Diagnostics |
-| `<leader>sh` | Help Pages |
-| `<leader>sH` | Highlights |
-| `<leader>si` | Icons |
-| `<leader>sj` | Jumps |
-| `<leader>sk` | Keymaps |
-| `<leader>sl` | Location List |
-| `<leader>sm` | Marks |
-| `<leader>sM` | Man Pages |
-| `<leader>sq` | Quickfix List |
-| `<leader>sR` | Resume Picker |
-| `<leader>su` | Undo History |
-| `<leader>sn` | Notifications |
-| `<leader>uC` | Colorschemes |
-| `gd` | Goto Definition |
-| `gD` | Goto Declaration |
-| `gr` | LSP References |
-| `gI` | Goto Implementation |
-| `gy` | Goto Type Definition |
-| `<leader>ss` | LSP Symbols |
-| `<leader>sS` | LSP Workspace Symbols |
-| `<leader>z` | Toggle Zen Mode |
-| `<leader>Z` | Toggle Zoom |
-| `<leader>.` | Toggle Scratch Buffer |
-| `<leader>S` | Select Scratch Buffer |
-| `<leader>n` | Notification History |
-| `<leader>un` | Dismiss Notifications |
-| `<leader>bd` | Delete Buffer |
-| `<leader>cR` | Rename File |
+| Keybinding        | Description           |
+| ----------------- | --------------------- |
+| `<leader><space>` | Smart Find Files      |
+| `<leader>,`       | Buffers               |
+| `<leader>/`       | Grep                  |
+| `<leader>:`       | Command History       |
+| `<leader>e`       | Toggle Explorer       |
+| `<leader>fb`      | Buffers               |
+| `<leader>fc`      | Find Config File      |
+| `<leader>ff`      | Find Files            |
+| `<leader>fg`      | Find Git Files        |
+| `<leader>fr`      | Recent Files          |
+| `<leader>fp`      | Projects              |
+| `<leader>gb`      | Git Branches          |
+| `<leader>gl`      | Git Log               |
+| `<leader>gL`      | Git Log Line          |
+| `<leader>gs`      | Git Status            |
+| `<leader>gS`      | Git Stash             |
+| `<leader>gd`      | Git Diff              |
+| `<leader>gf`      | Git Log File          |
+| `<leader>gB`      | Git Browse            |
+| `<leader>gg`      | Lazygit               |
+| `<leader>sb`      | Buffer Lines          |
+| `<leader>sB`      | Grep Open Buffers     |
+| `<leader>sg`      | Grep                  |
+| `<leader>sw`      | Search Word           |
+| `<leader>s"`      | Registers             |
+| `<leader>sa`      | Autocmds              |
+| `<leader>sc`      | Command History       |
+| `<leader>sC`      | Commands              |
+| `<leader>sd`      | Diagnostics           |
+| `<leader>sD`      | Buffer Diagnostics    |
+| `<leader>sh`      | Help Pages            |
+| `<leader>sH`      | Highlights            |
+| `<leader>si`      | Icons                 |
+| `<leader>sj`      | Jumps                 |
+| `<leader>sk`      | Keymaps               |
+| `<leader>sl`      | Location List         |
+| `<leader>sm`      | Marks                 |
+| `<leader>sM`      | Man Pages             |
+| `<leader>sq`      | Quickfix List         |
+| `<leader>sR`      | Resume Picker         |
+| `<leader>su`      | Undo History          |
+| `<leader>sn`      | Notifications         |
+| `<leader>uC`      | Colorschemes          |
+| `gd`              | Goto Definition       |
+| `gD`              | Goto Declaration      |
+| `gr`              | LSP References        |
+| `gI`              | Goto Implementation   |
+| `gy`              | Goto Type Definition  |
+| `<leader>ss`      | LSP Symbols           |
+| `<leader>sS`      | LSP Workspace Symbols |
+| `<leader>z`       | Toggle Zen Mode       |
+| `<leader>Z`       | Toggle Zoom           |
+| `<leader>.`       | Toggle Scratch Buffer |
+| `<leader>S`       | Select Scratch Buffer |
+| `<leader>n`       | Notification History  |
+| `<leader>un`      | Dismiss Notifications |
+| `<leader>bd`      | Delete Buffer         |
+| `<leader>cR`      | Rename File           |
 
 ### Text Editing
 
-| Keybinding | Description |
-| --- | --- |
-| `J` / `K` | In Visual mode, move selected lines |
-| `J` | In Normal mode, join lines without moving the cursor |
-| `<C-d>` | Scroll down, keeping cursor centered |
-| `<C-u>` | Scroll up, keeping cursor centered |
-| `n` / `N` | After searching, recenter the view |
+| Keybinding | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| `J` / `K`  | In Visual mode, move selected lines                  |
+| `J`        | In Normal mode, join lines without moving the cursor |
+| `<C-d>`    | Scroll down, keeping cursor centered                 |
+| `<C-u>`    | Scroll up, keeping cursor centered                   |
+| `n` / `N`  | After searching, recenter the view                   |
 
 ## ✅ Dependencies
 
