@@ -49,6 +49,8 @@ Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 Plug("nvim-tree/nvim-web-devicons")
 -- NOTE: Copilot
 Plug("github/copilot.vim")
+Plug("nvim-lua/plenary.nvim")
+Plug("CopilotC-Nvim/CopilotChat.nvim")
 
 vim.call("plug#end")
 
@@ -58,6 +60,7 @@ require("plug.mini")
 require("plug.notify")
 require("plug.snacks")
 require("plug.colors")
+require("plug.copilot")
 require("plug.lsp-cmp")
 require("plug.whichkey")
 require("plug.formatter")

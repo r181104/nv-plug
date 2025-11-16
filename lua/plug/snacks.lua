@@ -59,7 +59,7 @@ snacks.setup({
 		enabled = true,
 		indent = {
 			enabled = true,
-			char = "│",
+			char = "",
 			only_scope = false,
 			only_current = false,
 		},
