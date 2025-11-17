@@ -1,15 +1,16 @@
 # [<img src="https://raw.githubusercontent.com/r181104/Wallpapers/refs/heads/master/logo/python.jpg" width="60" height="60">](https://www.python.org) A Modern Neovim Configuration
 
-A sleek and functional Neovim setup powered by Lua, `vim-plug`, and a collection of modern plugins. This configuration is designed to be fast, easy to use, and highly customizable.
+A sleek and functional Neovim setup powered by Lua and a collection of modern plugins. This configuration is designed to be fast, easy to use, and highly customizable.
 
 ## ✨ Features
 
-- **Fast and Lightweight**: Optimized for performance with a minimal set of plugins.
-- **Modern UI**: A beautiful and functional UI with a custom statusline, notifications, and command line.
-- **Powerful Completion**: Intelligent code completion with LSP support, snippets, and fuzzy matching.
+- **Fast and Lightweight**: Optimized for performance with a minimal, curated plugin set.
+- **Modern UI**: A beautiful and functional UI with a custom statusline, dashboard, notifications, pickers, and file explorer powered by `snacks.nvim` and `mini.nvim`.
+- **Powerful Completion**: PyCharm-like intelligent completion with `blink.cmp`, snippets via `LuaSnip`, and rich LSP integration.
 - **Advanced Syntax Highlighting**: Full support for `nvim-treesitter` for more accurate and detailed highlighting.
-- **Git Integration**: Seamless Git integration with `gitsigns.nvim` and a variety of helpful commands.
+- **Git Integration**: Seamless Git integration with `gitsigns.nvim`, Snacks git pickers (log, branches, status), and optional `lazygit`.
 - **Auto-formatting**: Automatic code formatting with `conform.nvim` for a wide range of languages.
+- **AI Assistance**: Deep GitHub Copilot integration with inline suggestions and an in-editor chat (`CopilotChat.nvim`).
 - **Extensible**: Easily customize and extend the configuration to fit your workflow.
 
 ## 📂 Structure
