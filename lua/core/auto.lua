@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gr", vim.lsp.buf.references, "Find references")
 		map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
 		map("n", "gk", vim.lsp.buf.hover, "Hover documentation")
-		map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
+		map("n", "<C-S-k>", vim.lsp.buf.signature_help, "Signature help")
 
 		-- Workspace
 		map("n", "<leader>aw", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
@@ -60,7 +60,7 @@ vim.diagnostic.config({
 		current_line = true,
 		severity = { min = vim.diagnostic.severity.WARN },
 	},
-	update_in_insert = false,
+	update_in_insert = true,
 	underline = true,
 	severity_sort = true,
 	float = {

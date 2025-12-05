@@ -128,6 +128,7 @@ vim.lsp.config("*", {
 
 -- Enable your LSP servers
 vim.lsp.enable({
+	"zls",
 	"html",
 	"cssls",
 	"ts_ls",

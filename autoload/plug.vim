@@ -1,6 +1,26 @@
 " vim-plug: Vim plugin manager
 " ============================
-" Reload the file or restart Vim, then you can,
+"
+" 1. Download plug.vim and put it in 'autoload' directory
+"
+"   # Vim
+"   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
+"   # Neovim
+"   sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"
+" 2. Add a vim-plug section to your ~/.vimrc (or ~/.config/nvim/init.vim for Neovim)
+"
+"   call plug#begin()
+"
+"   " List your plugins here
+"   Plug 'tpope/vim-sensible'
+"
+"   call plug#end()
+"
+" 3. Reload the file or restart Vim, then you can,
 "
 "     :PlugInstall to install plugins
 "     :PlugUpdate  to update plugins
@@ -8,6 +28,30 @@
 "     :PlugClean   to remove plugins no longer in the list
 "
 " For more information, see https://github.com/junegunn/vim-plug
+"
+"
+" Copyright (c) 2024 Junegunn Choi
+"
+" MIT License
+"
+" Permission is hereby granted, free of charge, to any person obtaining
+" a copy of this software and associated documentation files (the
+" "Software"), to deal in the Software without restriction, including
+" without limitation the rights to use, copy, modify, merge, publish,
+" distribute, sublicense, and/or sell copies of the Software, and to
+" permit persons to whom the Software is furnished to do so, subject to
+" the following conditions:
+"
+" The above copyright notice and this permission notice shall be
+" included in all copies or substantial portions of the Software.
+"
+" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+" NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+" LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+" OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+" WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 if exists('g:loaded_plug')
   finish
@@ -2339,7 +2383,9 @@ function! s:git_validate(spec, check_branch)
       let err = join(['Invalid URI: '.remote,
                     \ 'Expected:    '.a:spec.uri,
                     \ 'PlugClean required.'], "\n")
-    elseif a:check_branch && has_key(a:spec, 'commit')
+    elseif !a:check_branch
+      return ['', 0]
+    elseif has_key(a:spec, 'commit')
       let sha = s:git_revision(a:spec.dir)
       if empty(sha)
         let err = join(add(result, 'PlugClean required.'), "\n")
@@ -2348,18 +2394,16 @@ function! s:git_validate(spec, check_branch)
                               \ a:spec.commit[:6], sha[:6]),
                       \ 'PlugUpdate required.'], "\n")
       endif
+    elseif has_key(a:spec, 'tag')
+      let tag = s:system_chomp('git describe --exact-match --tags HEAD 2>&1', a:spec.dir)
+      if a:spec.tag !=# tag && a:spec.tag !~ '\*'
+        let err = printf('Invalid tag: %s (expected: %s). Try PlugUpdate.',
+              \ (empty(tag) ? 'N/A' : tag), a:spec.tag)
+      endif
     elseif a:check_branch
       let current_branch = result[0]
-      " Check tag
       let origin_branch = s:git_origin_branch(a:spec)
-      if has_key(a:spec, 'tag')
-        let tag = s:system_chomp('git describe --exact-match --tags HEAD 2>&1', a:spec.dir)
-        if a:spec.tag !=# tag && a:spec.tag !~ '\*'
-          let err = printf('Invalid tag: %s (expected: %s). Try PlugUpdate.',
-                \ (empty(tag) ? 'N/A' : tag), a:spec.tag)
-        endif
-      " Check branch
-      elseif origin_branch !=# current_branch
+      if origin_branch !=# current_branch
         let err = printf('Invalid branch: %s (expected: %s). Try PlugUpdate.',
               \ current_branch, origin_branch)
       endif

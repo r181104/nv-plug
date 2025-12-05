@@ -24,7 +24,6 @@ map("n", "<leader>bn", ":bn<CR>", opts)
 map("n", "<leader>bp", ":bp<CR>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
 map("n", "<C-c>", "<cmd>nohlsearch<CR>", opts)
-map({ "n", "v" }, "<Leader>y", '"+y', opts)
 
 -- To Travel between splits or panes you may call it
 map("n", "<C-j>", "<C-w>j", opts)
@@ -37,13 +36,17 @@ map("n", "<C-S-l>", "<C-w>l", opts)
 map("n", "<C-S-h>", "<C-w>h", opts)
 
 -- Prime's remaps
-map("v", "K", ":m '<-2<CR>gv=gv")
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("n", "J", "mzJ`z")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
+map("n", "J", "mzJ`z", opts)
+map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<C-u>", "<C-u>zz", opts)
+map("n", "n", "nzzzv", opts)
+map("n", "N", "Nzzzv", opts)
+map({ "n", "v" }, "<leader>y", [["+y]], opts)
+map("n", "<leader>Y", [["+Y]], opts)
+map({ "n", "v" }, "<leader>d", '"_d', opts)
+map("x", "<leader>p", [["_dP]], opts)
 
 -- Conform
 map({ "n", "v" }, "<leader>fm", function()

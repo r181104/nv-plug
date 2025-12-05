@@ -17,9 +17,7 @@ vim.call("plug#begin", vim.fn.stdpath("data") .. "/plugged")
 
 -- NOTE: ColorScheme
 Plug("folke/tokyonight.nvim")
--- NOTE: Command Line
 Plug("folke/noice.nvim")
-Plug("MunifTanjim/nui.nvim")
 -- NOTE: Notifier
 Plug("rcarriga/nvim-notify")
 -- NOTE: For gitsigns
@@ -47,15 +45,18 @@ Plug("windwp/nvim-autopairs")
 Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 -- NOTE: Icons
 Plug("nvim-tree/nvim-web-devicons")
+-- NOTE: MongoDB
+Plug("jrop/mongo.nvim")
 -- NOTE: Copilot
 Plug("github/copilot.vim")
 Plug("nvim-lua/plenary.nvim")
 Plug("CopilotC-Nvim/CopilotChat.nvim")
+-- NOTE: Conceal Secrets
+Plug("laytan/cloak.nvim")
 
 vim.call("plug#end")
 
 require("plug.git")
-require("plug.cmd")
 require("plug.mini")
 require("plug.notify")
 require("plug.snacks")
@@ -66,3 +67,4 @@ require("plug.whichkey")
 require("plug.formatter")
 require("plug.autopairs")
 require("plug.treesitter")
+require("plug.cloak")
