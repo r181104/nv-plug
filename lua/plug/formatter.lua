@@ -36,6 +36,7 @@ conform.setup({
 		go = { "gofumpt", "goimports" },
 		rust = { "rustfmt" },
 		java = { "google-java-format" },
+		zig = { "zigfmt" },
 
 		-- Data / query
 		sql = { "sqruff" },
@@ -43,6 +44,11 @@ conform.setup({
 	},
 
 	formatters = {
+		zigfmt = {
+			command = "zig",
+			args = { "fmt", "--" },
+			stdin = true,
+		},
 		shfmt = {
 			command = "shfmt",
 			args = { "-i", "2", "-bn", "-ci", "-ln", "bash" },
